@@ -9,24 +9,7 @@ const getList = () => {
         .then(data => {
             console.log(data);
             characterList(data);
-        })
-        .catch(error => {
-            console.log('Noob !', error);
-        });
-};
-
-const getName = () => {
-    let name = document.getElementById('name').value;
-    let url = `https://character-database.becode.xyz/characters[?name=:${name}]`;
-    fetch(url)
-        .then(response => {
-            if (!response.ok) throw new Error(response.statusText);
-            return response.json();
-        })
-        .then(data => {
-            console.log(data);
-            console.log(`data get by name: ${name}`)
-            /*characterList(data);*/
+            inputKey(data);
         })
         .catch(error => {
             console.log('Noob !', error);
@@ -50,13 +33,45 @@ const characterList = (data) => {
     console.log(`add last card`);
 };
 
+const getName = () => {
+    let inputName = document.getElementById('name').value;
+    let url = `https://character-database.becode.xyz/characters`;
+    fetch(url)
+        .then(response => {
+            if (!response.ok) throw new Error(response.statusText);
+            return response.json();
+        })
+        .then(data => {
+            console.log(data);
+            console.log(`data get by name or id: ${inputName}`);
+            searchCharacter(data);
+        })
+        .catch(error => {
+            console.log('Noob !', error);
+        });
+};
+
+const searchCharacter = (data) => {
+    let searchSection = document.querySelector('#searchedCharacter');
+    let inputName = document.getElementById('name').value;
+    searchSection.innerHTML = data
+    .map((character, idx) => {
+        if (character.name == inputName || character.id == inputName) {
+            console.log(`add card ${idx+1}`)
+            return `<div>Pingouin: ${character.name}<img src="data:image/png;base64,${character.image}"></div>`;
+        }
+    })
+    .join(' ');  
+};
+
 /*const inputBtn = () => {
     document.getElementById('btnList').addEventListener('click', getList);
 };*/
-const inputKey = () => {
+const inputKey = (data) => {
     document.getElementById('name').addEventListener('keyup', event => {
         if (event.key === 'Enter') {
-            getName();
+            /*getName();*/
+            searchCharacter(data);
         }
     });
 }
@@ -65,6 +80,6 @@ const appInit = () => {
     /*inputBtn();*/
     console.log("bonjour!");
     getList();
-    inputKey();
+    /*inputKey();*/
 };
 appInit();
