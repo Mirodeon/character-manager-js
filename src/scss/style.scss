@@ -164,9 +164,20 @@ body {
                             min-width: 70px;
                             padding: 5px 5px;
                             font-size: 14px;
-                            filter: drop-shadow(-1px 1px 5px white) drop-shadow(-1px -1px 5px white);
+                            filter: drop-shadow(-1px 1px 2px white) drop-shadow(-1px -1px 2px white);
                             background: white;
                             color: black;
+
+                            &.addController {
+                                border-radius: 50% 0 0 50%;
+                                padding-left: 10px;
+                            }
+
+                            &.profile-btn {
+                                border-radius: 0 50% 50% 0;
+                                padding-right: 10px;
+
+                            }
 
                             &:hover {
                                 animation: 1s ease-out 0s infinite alternate shine;
@@ -197,10 +208,12 @@ body {
                 filter: drop-shadow(-1px 1px 5px black) drop-shadow(-1px -1px 5px black);
                 border: 10px solid black;
                 border-radius: 20px;
+                animation: 3s ease-out 0s opacit;
 
                 .container-pictural__profile {
                     height: 100%;
                     background: black;
+
                     .container-img__profile {
                         width: 150px;
                         height: 150px;
@@ -230,10 +243,18 @@ body {
                             min-width: 55px;
                             box-sizing: border-box;
                             border: 1px solid white;
-                            filter: drop-shadow(-1px 1px 5px white) drop-shadow(-1px -1px 5px white);
+                            filter: drop-shadow(-1px 1px 2px white) drop-shadow(-1px -1px 2px white);
                             text-align: center;
                             background: white;
                             color: black;
+
+                            &.editorBtn {
+                                border-radius: 50% 0 0 50%;
+                            }
+
+                            &.delBtn {
+                                border-radius: 0 50% 50% 0;
+                            }
 
                             &:hover {
                                 animation: 1s ease-out 0s infinite alternate shine;
@@ -287,10 +308,10 @@ body {
 
 @keyframes shine {
     0% {
-        filter: drop-shadow(-1px 1px 5px white) drop-shadow(-1px -1px 5px white);
+        filter: drop-shadow(-1px 1px 1px white) drop-shadow(-1px -1px 1px white);
     }
 
     100% {
-        filter: drop-shadow(-1px 1px 1px white) drop-shadow(-1px -1px 1px white);
+        filter: drop-shadow(-1px 1px 5px white) drop-shadow(-1px -1px 5px white);
     }
 }

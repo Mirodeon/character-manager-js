@@ -154,14 +154,14 @@ const profileCharacter = (data, i) => {
     </div>
     <div class="container-txt__profile">
     <h1 class="title__profile">${data[i].name}</h1>
-    ${converterMd(data[i].description)}
+    <div class="txt__profile">${converterMd(data[i].description)}</div>
     </div>`;
-    let txtProfile = document.querySelector('.container-txt__profile');
+    /*let txtProfile = document.querySelector('.container-txt__profile');
     if (converterMd(data[i].description) == "") {
         let addP = document.createElement('p');
         txtProfile.append(addP);
     };
-    txtProfile.lastElementChild.classList.add(`txt__profile`);
+    txtProfile.lastElementChild.classList.add(`txt__profile`);*/
     delBtn();
     editBtn();
     console.log(`Voilà la description"${converterMd(data[i].description)}"`);
@@ -188,11 +188,15 @@ const flipCard = () => {
     });
 };
 const converterMd = (mdTxt) => {
-    var converter = new showdown.Converter(),
-        text = mdTxt,
-        html = converter.makeHtml(text);
-    return html;
-}
+    try {
+        var converter = new showdown.Converter(),
+            text = mdTxt,
+            html = converter.makeHtml(text);
+        return html;
+    } catch {
+        return;
+    }
+};
 
 const appInit = () => {
     console.log("bonjour!");

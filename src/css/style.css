@@ -147,9 +147,17 @@ body main #listCharacter .listCard.active .container-btn__listCard .btn__listCar
   min-width: 70px;
   padding: 5px 5px;
   font-size: 14px;
-  filter: drop-shadow(-1px 1px 5px white) drop-shadow(-1px -1px 5px white);
+  filter: drop-shadow(-1px 1px 2px white) drop-shadow(-1px -1px 2px white);
   background: white;
   color: black;
+}
+body main #listCharacter .listCard.active .container-btn__listCard .btn__listCard.addController {
+  border-radius: 50% 0 0 50%;
+  padding-left: 10px;
+}
+body main #listCharacter .listCard.active .container-btn__listCard .btn__listCard.profile-btn {
+  border-radius: 0 50% 50% 0;
+  padding-right: 10px;
 }
 body main #listCharacter .listCard.active .container-btn__listCard .btn__listCard:hover {
   -webkit-animation: 1s ease-out 0s infinite alternate shine;
@@ -174,6 +182,8 @@ body main #listCharacter .profile__article {
   filter: drop-shadow(-1px 1px 5px black) drop-shadow(-1px -1px 5px black);
   border: 10px solid black;
   border-radius: 20px;
+  -webkit-animation: 3s ease-out 0s opacit;
+          animation: 3s ease-out 0s opacit;
 }
 body main #listCharacter .profile__article .container-pictural__profile {
   height: 100%;
@@ -206,10 +216,16 @@ body main #listCharacter .profile__article .container-pictural__profile .contain
   min-width: 55px;
   box-sizing: border-box;
   border: 1px solid white;
-  filter: drop-shadow(-1px 1px 5px white) drop-shadow(-1px -1px 5px white);
+  filter: drop-shadow(-1px 1px 2px white) drop-shadow(-1px -1px 2px white);
   text-align: center;
   background: white;
   color: black;
+}
+body main #listCharacter .profile__article .container-pictural__profile .container-btn__profile .btn__profile.editorBtn {
+  border-radius: 50% 0 0 50%;
+}
+body main #listCharacter .profile__article .container-pictural__profile .container-btn__profile .btn__profile.delBtn {
+  border-radius: 0 50% 50% 0;
 }
 body main #listCharacter .profile__article .container-pictural__profile .container-btn__profile .btn__profile:hover {
   -webkit-animation: 1s ease-out 0s infinite alternate shine;
@@ -261,17 +277,17 @@ body main #listCharacter .profile__article .container-txt__profile .txt__profile
 }
 @-webkit-keyframes shine {
   0% {
-    filter: drop-shadow(-1px 1px 5px white) drop-shadow(-1px -1px 5px white);
+    filter: drop-shadow(-1px 1px 1px white) drop-shadow(-1px -1px 1px white);
   }
   100% {
-    filter: drop-shadow(-1px 1px 1px white) drop-shadow(-1px -1px 1px white);
+    filter: drop-shadow(-1px 1px 5px white) drop-shadow(-1px -1px 5px white);
   }
 }
 @keyframes shine {
   0% {
-    filter: drop-shadow(-1px 1px 5px white) drop-shadow(-1px -1px 5px white);
+    filter: drop-shadow(-1px 1px 1px white) drop-shadow(-1px -1px 1px white);
   }
   100% {
-    filter: drop-shadow(-1px 1px 1px white) drop-shadow(-1px -1px 1px white);
+    filter: drop-shadow(-1px 1px 5px white) drop-shadow(-1px -1px 5px white);
   }
 }/*# sourceMappingURL=style.css.map */
