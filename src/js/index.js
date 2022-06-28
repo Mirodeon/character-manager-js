@@ -44,7 +44,7 @@ const characterList = (data) => {
     <img class="img__cardAdd" src="${getImageUrl("addCard")}">
     </div>`;
     console.log(`add last card`);
-    inputBtn();
+    addBtn();
 };
 
 const searchCharacter = (data) => {
@@ -75,17 +75,21 @@ const searchCharacter = (data) => {
         })
         .join(' ');
     flipCard();
+    addBtn();
 };
 
-const inputBtn = () => {
+const listBtn = () => {
     document.querySelector('.resetController').addEventListener('click', getList);
+};
+
+const addBtn = () => {
     let addBtns = [...document.querySelectorAll('.addController')];
-    addBtns.forEach((button, i) => {
+    addBtns.forEach((button) => {
         button.addEventListener('click', () => {
             addForm();
         });
     });
-};
+}
 
 const inputKey = (data) => {
     document.getElementById('name').addEventListener('keyup', event => {
@@ -98,7 +102,12 @@ const inputKey = (data) => {
 
 const addForm = () => {
     let listSection = document.querySelector('#listCharacter');
-    listSection.innerHTML = "Addform";
+    listSection.innerHTML = `Yay!
+    <br>You're here to add some character!
+    <br>So incredible!
+    <br>Waw!
+    <br>Wouhou!
+    <br>You'll be famous for that!`;
 }
 
 //dynamic URL
@@ -125,7 +134,7 @@ const flipCard = () => {
 const appInit = () => {
     console.log("bonjour!");
     getList();
-    /*inputKey();*/
+    listBtn();
 };
 appInit();
 
