@@ -81,7 +81,7 @@ body {
                 filter: drop-shadow(-1px 1px 5px black) drop-shadow(-1px -1px 5px black);
                 transform-style: preserve-3d;
                 transition: all 1.5s ease;
-                animation: 2s ease-out 0s opacit;
+                animation: 3s ease-out 0s opacit;
                 display: initial;
                 position: relative;
 
@@ -149,7 +149,6 @@ body {
                         display: flex;
                         gap: 10px;
                         justify-content: center;
-                        z-index: 1;
 
                         .btn__listCard {
                             box-sizing: border-box;

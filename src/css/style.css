@@ -72,8 +72,8 @@ body main #listCharacter .listCard {
   filter: drop-shadow(-1px 1px 5px black) drop-shadow(-1px -1px 5px black);
   transform-style: preserve-3d;
   transition: all 1.5s ease;
-  -webkit-animation: 2s ease-out 0s opacit;
-          animation: 2s ease-out 0s opacit;
+  -webkit-animation: 3s ease-out 0s opacit;
+          animation: 3s ease-out 0s opacit;
   display: initial;
   position: relative;
 }
@@ -132,7 +132,6 @@ body main #listCharacter .listCard.active .container-btn__listCard {
   display: flex;
   gap: 10px;
   justify-content: center;
-  z-index: 1;
 }
 body main #listCharacter .listCard.active .container-btn__listCard .btn__listCard {
   box-sizing: border-box;

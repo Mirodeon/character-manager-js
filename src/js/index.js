@@ -29,7 +29,7 @@ const characterList = (data) => {
                 <p class="txt__listCard">${character.shortDescription}</p>
                 <div class="container-btn__listCard">
                 <btn class="btn__listCard addController">ADD</btn>
-                <btn class="btn__listCard">PROFILE</btn>
+                <btn class="btn__listCard profile-btn">PROFILE</btn>
                 </div>
                 </article>`;
             }
@@ -45,6 +45,7 @@ const characterList = (data) => {
     </div>`;
     console.log(`add last card`);
     addBtn();
+    profileBtn(data);
 };
 
 const searchCharacter = (data) => {
@@ -63,7 +64,7 @@ const searchCharacter = (data) => {
                 <p class="txt__listCard">${character.shortDescription}</p>
                 <div class="container-btn__listCard">
                 <btn class="btn__listCard addController">ADD</btn>
-                <btn class="btn__listCard">PROFILE</btn>
+                <btn class="btn__listCard profile-btn">PROFILE</btn>
                 </div>
                 </article>`;
             } else {
@@ -76,6 +77,7 @@ const searchCharacter = (data) => {
         .join(' ');
     flipCard();
     addBtn();
+    profileBtn(data);
 };
 
 const listBtn = () => {
@@ -89,7 +91,16 @@ const addBtn = () => {
             addForm();
         });
     });
-}
+};
+
+const profileBtn = (data) => {
+    let profileBtns = [...document.querySelectorAll('.profile-btn')];
+    profileBtns.forEach((button, i) => {
+        button.addEventListener('click', () => {
+            profileCharacter(data, i);
+        });
+    });
+};
 
 const inputKey = (data) => {
     document.getElementById('name').addEventListener('keyup', event => {
@@ -108,7 +119,16 @@ const addForm = () => {
     <br>Waw!
     <br>Wouhou!
     <br>You'll be famous for that!`;
-}
+};
+
+const profileCharacter = (data, i) => {
+    let listSection = document.querySelector('#listCharacter');
+    listSection.innerHTML = `<br>${data[i].name}
+    <br>${data[i].description}
+    <img src="data:image/png;base64,${data[i].image}">
+    <br>This is a symbolic character edit button.
+    <br>This is a symbolic delete button.`;
+};
 
 //dynamic URL
 const getImageUrl = (name) => {
