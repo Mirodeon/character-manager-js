@@ -157,6 +157,10 @@ const profileCharacter = (data, i) => {
     ${converterMd(data[i].description)}
     </div>`;
     let txtProfile = document.querySelector('.container-txt__profile');
+    if (converterMd(data[i].description) == "") {
+        let addP = document.createElement('p');
+        txtProfile.append(addP);
+    };
     txtProfile.lastElementChild.classList.add(`txt__profile`);
     delBtn();
     editBtn();
