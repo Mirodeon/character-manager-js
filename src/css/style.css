@@ -158,6 +158,70 @@ body main #listCharacter .listCard .container-img__cardAdd .img__cardAdd {
   display: block;
   filter: drop-shadow(-1px 1px 5px white) drop-shadow(-1px -1px 5px white);
 }
+body main #listCharacter .profile__article {
+  max-width: 800px;
+  display: flex;
+  filter: drop-shadow(-1px 1px 5px black) drop-shadow(-1px -1px 5px black);
+  border: 10px solid black;
+  border-radius: 20px;
+}
+body main #listCharacter .profile__article .container-pictural__profile .container-img__profile {
+  width: 150px;
+  height: 150px;
+  box-sizing: border-box;
+}
+body main #listCharacter .profile__article .container-pictural__profile .container-img__profile .img__profile {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+body main #listCharacter .profile__article .container-pictural__profile .container-btn__profile {
+  display: flex;
+  border-top: 10px solid black;
+  height: 100px;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+body main #listCharacter .profile__article .container-pictural__profile .container-btn__profile .btn__profile {
+  padding: 5px 5px;
+  font-size: 14px;
+  min-width: 55px;
+  box-sizing: border-box;
+  border: 1px solid white;
+  filter: drop-shadow(-1px 1px 5px white) drop-shadow(-1px -1px 5px white);
+  text-align: center;
+}
+body main #listCharacter .profile__article .container-pictural__profile .container-btn__profile .btn__profile:hover {
+  -webkit-animation: 1s ease-out 0s infinite alternate shine;
+          animation: 1s ease-out 0s infinite alternate shine;
+  cursor: pointer;
+}
+body main #listCharacter .profile__article .container-txt__profile {
+  border-left: 10px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+body main #listCharacter .profile__article .container-txt__profile .title__profile {
+  border-bottom: 10px solid black;
+  height: 100px;
+  box-sizing: border-box;
+  text-align: center;
+  line-height: 90px;
+  font-size: 48px;
+}
+body main #listCharacter .profile__article .container-txt__profile .txt__profile {
+  box-sizing: border-box;
+  display: block;
+  min-height: 150px;
+  width: 100%;
+  padding-right: 10px;
+  padding-left: 20px;
+  padding-top: 15px;
+  font-size: 16px;
+}
 
 @-webkit-keyframes opacit {
   0% {

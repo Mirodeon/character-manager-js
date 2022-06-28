@@ -127,13 +127,19 @@ const profileCharacter = (data, i) => {
     listSection.innerHTML = `<article class="profile__article">
     <div class="container-pictural__profile">
     <div class="container-img__profile">
-    <img src="data:image/png;base64,${data[i].image}">
+    <img class="img__profile" src="data:image/png;base64,${data[i].image}">
     </div>
-    <div></div></div>
+    <div class="container-btn__profile">
+    <btn class="btn__profile editorBtn">EDIT</btn>
+    <btn class="btn__profile delBtn">DEL</btn>
+    </div>
+    </div>
     <div class="container-txt__profile">
     <h1 class="title__profile">${data[i].name}</h1>
-    <p class="txt__profile">${converterMd(data[i].description)}</p>
+    ${converterMd(data[i].description)}
     </div>`;
+    let txtProfile = document.querySelector('.container-txt__profile');
+    txtProfile.lastElementChild.classList.add(`txt__profile`);
 };
 
 //dynamic URL
