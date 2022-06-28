@@ -1,4 +1,3 @@
-
 const getList = () => {
     let url = 'https://character-database.becode.xyz/characters';
     fetch(url)
@@ -111,7 +110,7 @@ const inputKey = (data) => {
     });
 };
 
-const addForm = () => {
+/* const addForm = () => {
     let listSection = document.querySelector('#listCharacter');
     listSection.innerHTML = `Yay!
     <br>You're here to add some character!
@@ -120,9 +119,87 @@ const addForm = () => {
     <br>Wouhou!
     <br>You'll be famous for that!
     <br>This is a symbolic create button.`;
+}; */
+
+
+const newCharacter = () => {
+
+    console.log('form submited')
+
+    let url = 'https://character-database.becode.xyz/characters';
+    let name = document.getElementById(`formName`).value;
+    let description = document.getElementById('formDescription').value;
+    let shortDescription = document.getElementById('formShortDescription').value;
+    let avatar = document.getElementById('formAvatar');
+
+    alert(`the new charrater name is ${name}`);
+
+    var character = {
+        description: description,
+        //id: "",
+        //image: '',
+        name : name,
+        shortDescription: shortDescription
+    };
+    
+    console.log(character);
+    
+    axios({
+        method: 'post',
+        url: url,
+        data: character
+        })
+        .then(function (response) {
+            console.log(response);
+        })
+        .catch(function (error) {
+            console.log(error);
+    });
+
+    alert(`${character.name}`);
 };
 
+const addForm = () => {
+    let listSection = document.querySelector('#listCharacter');
+    
+    listSection.innerHTML = `
+    <form>
+    <input type="file" id="formAvatar" name="avatar" accept="image/png, image/jpeg">
+    <input type="text" id="formName" name="name" placeholder="name">
+    <input type="text" id="formShortDescrption" name="shortDescription" placeholder="Short description">
+    <input type="text" id="formDescription" name="description" placeholder="Description">
+    <input type="submit" id="submit" value="Submit">
+    </form>
+    `;
+
+    console.log('form created');
+
+    document.getElementById('submit').addEventListener('click', newCharacter);
+};
+
+/* const newCharacter = () => {
+    let url = 'https://character-database.becode.xyz/characters';
+    let name = document.getElementById('formName');
+    let shortDescription = document.getElementById('formShortDescription');
+    let description = document.getElementById('formDescription');
+
+        //const listSection = document.querySelector('#listCharacter');
+    const newCharacter = { description: '',
+                            id: ${name},
+                            image: '',
+                            name: ${name},
+                            shortDescription: ${shortDescription}
+                        };
+axios.post(url, newCharacter)
+    //.then(response => listSection.innerHTML = response.character.id);
+    .then(response => console.log(response.character.id));
+}; */
+
+
+
+
 const profileCharacter = (data, i) => {
+    
     let listSection = document.querySelector('#listCharacter');
     listSection.innerHTML = `<article class="profile__article">
     <div class="container-pictural__profile">
@@ -167,6 +244,7 @@ const appInit = () => {
     console.log("bonjour!");
     getList();
     listBtn();
+    axios.delete('https://character-database.becode.xyz/characters/:a142285a-41b0-4e43-b9ad-6ef7c9a1ee84')
 };
 appInit();
 
