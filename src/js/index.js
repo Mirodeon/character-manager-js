@@ -118,16 +118,22 @@ const addForm = () => {
     <br>So incredible!
     <br>Waw!
     <br>Wouhou!
-    <br>You'll be famous for that!`;
+    <br>You'll be famous for that!
+    <br>This is a symbolic create button.`;
 };
 
 const profileCharacter = (data, i) => {
     let listSection = document.querySelector('#listCharacter');
-    listSection.innerHTML = `<br>${data[i].name}
-    <br>${data[i].description}
+    listSection.innerHTML = `<article class="profile__article">
+    <div class="container-pictural__profile">
+    <div class="container-img__profile">
     <img src="data:image/png;base64,${data[i].image}">
-    <br>This is a symbolic character edit button.
-    <br>This is a symbolic delete button.`;
+    </div>
+    <div></div></div>
+    <div class="container-txt__profile">
+    <h1 class="title__profile">${data[i].name}</h1>
+    <p class="txt__profile">${converterMd(data[i].description)}</p>
+    </div>`;
 };
 
 //dynamic URL
@@ -150,6 +156,12 @@ const flipCard = () => {
         /*console.log(`add eventlistener flip on card ${i + 1}`);*/
     });
 };
+const converterMd = (mdTxt) => {
+    var converter = new showdown.Converter(),
+        text = mdTxt,
+        html = converter.makeHtml(text);
+    return html;
+}
 
 const appInit = () => {
     console.log("bonjour!");

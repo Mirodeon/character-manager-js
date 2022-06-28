@@ -24,5 +24,8 @@
   "bugs": {
     "url": "https://github.com/Mirodeon/character-manager-js/issues"
   },
-  "homepage": "https://github.com/Mirodeon/character-manager-js#readme"
+  "homepage": "https://github.com/Mirodeon/character-manager-js#readme",
+  "dependencies": {
+    "showdown": "^2.1.0"
+  }
 }
