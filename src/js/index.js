@@ -101,6 +101,24 @@ const profileBtn = (data) => {
     });
 };
 
+const delBtn = () => {
+    let delBtns = document.querySelector('.delBtn');
+    delBtns.addEventListener('click', delTab);
+};
+
+const delTab = () => {
+    console.log(`Bye bye :'c`);
+};
+
+const editBtn = () => {
+    let editBtns = document.querySelector('.editorBtn');
+    editBtns.addEventListener('click', profileEditor);
+};
+
+const profileEditor = () => {
+    console.log(`Make Up !!!!!`);
+};
+
 const inputKey = (data) => {
     document.getElementById('name').addEventListener('keyup', event => {
         if (event.key === 'Enter') {
@@ -204,13 +222,26 @@ const profileCharacter = (data, i) => {
     listSection.innerHTML = `<article class="profile__article">
     <div class="container-pictural__profile">
     <div class="container-img__profile">
-    <img src="data:image/png;base64,${data[i].image}">
+    <img class="img__profile" src="data:image/png;base64,${data[i].image}">
     </div>
-    <div></div></div>
+    <div class="container-btn__profile">
+    <btn class="btn__profile editorBtn">EDIT</btn>
+    <btn class="btn__profile delBtn">DEL</btn>
+    </div>
+    </div>
     <div class="container-txt__profile">
     <h1 class="title__profile">${data[i].name}</h1>
-    <p class="txt__profile">${converterMd(data[i].description)}</p>
+    <div class="txt__profile">${converterMd(data[i].description)}</div>
     </div>`;
+    /*let txtProfile = document.querySelector('.container-txt__profile');
+    if (converterMd(data[i].description) == "") {
+        let addP = document.createElement('p');
+        txtProfile.append(addP);
+    };
+    txtProfile.lastElementChild.classList.add(`txt__profile`);*/
+    delBtn();
+    editBtn();
+    console.log(`Voilà la description"${converterMd(data[i].description)}"`);
 };
 
 //dynamic URL
@@ -234,11 +265,15 @@ const flipCard = () => {
     });
 };
 const converterMd = (mdTxt) => {
-    var converter = new showdown.Converter(),
-        text = mdTxt,
-        html = converter.makeHtml(text);
-    return html;
-}
+    try {
+        var converter = new showdown.Converter(),
+            text = mdTxt,
+            html = converter.makeHtml(text);
+        return html;
+    } catch {
+        return;
+    }
+};
 
 const appInit = () => {
     console.log("bonjour!");
