@@ -1,8 +1,14 @@
 @import "reset.css";
 @import url("https://fonts.googleapis.com/css2?family=Barlow&family=Road+Rage&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Trispace&display=swap");
+* {
+  font-family: "Trispace", sans-serif;
+}
+
 body header {
   width: 100%;
   text-align: center;
+  font-family: "Trispace", sans-serif;
 }
 body header .bg__header {
   background: black;
@@ -110,6 +116,7 @@ body main #listCharacter .listCard .container-btn__listCard {
 }
 body main #listCharacter .listCard.active {
   transform: rotateY(180deg);
+  background: black;
 }
 body main #listCharacter .listCard.active .container-img__listCard {
   display: none;
@@ -126,6 +133,7 @@ body main #listCharacter .listCard.active .txt__listCard {
   min-height: 100px;
   align-items: center;
   justify-content: center;
+  color: white;
 }
 body main #listCharacter .listCard.active .container-btn__listCard {
   transform: rotateY(180deg);
@@ -140,6 +148,8 @@ body main #listCharacter .listCard.active .container-btn__listCard .btn__listCar
   padding: 5px 5px;
   font-size: 14px;
   filter: drop-shadow(-1px 1px 5px white) drop-shadow(-1px -1px 5px white);
+  background: white;
+  color: black;
 }
 body main #listCharacter .listCard.active .container-btn__listCard .btn__listCard:hover {
   -webkit-animation: 1s ease-out 0s infinite alternate shine;
@@ -159,11 +169,15 @@ body main #listCharacter .listCard .container-img__cardAdd .img__cardAdd {
   filter: drop-shadow(-1px 1px 5px white) drop-shadow(-1px -1px 5px white);
 }
 body main #listCharacter .profile__article {
-  max-width: 800px;
+  width: 800px;
   display: flex;
   filter: drop-shadow(-1px 1px 5px black) drop-shadow(-1px -1px 5px black);
   border: 10px solid black;
   border-radius: 20px;
+}
+body main #listCharacter .profile__article .container-pictural__profile {
+  height: 100%;
+  background: black;
 }
 body main #listCharacter .profile__article .container-pictural__profile .container-img__profile {
   width: 150px;
@@ -174,15 +188,17 @@ body main #listCharacter .profile__article .container-pictural__profile .contain
   display: block;
   width: 100%;
   height: 100%;
+  border-radius: 10px 10px 0px 0px;
 }
 body main #listCharacter .profile__article .container-pictural__profile .container-btn__profile {
   display: flex;
   border-top: 10px solid black;
-  height: 100px;
+  min-height: 100px;
   box-sizing: border-box;
   align-items: center;
   justify-content: center;
   gap: 10px;
+  background: black;
 }
 body main #listCharacter .profile__article .container-pictural__profile .container-btn__profile .btn__profile {
   padding: 5px 5px;
@@ -192,6 +208,8 @@ body main #listCharacter .profile__article .container-pictural__profile .contain
   border: 1px solid white;
   filter: drop-shadow(-1px 1px 5px white) drop-shadow(-1px -1px 5px white);
   text-align: center;
+  background: white;
+  color: black;
 }
 body main #listCharacter .profile__article .container-pictural__profile .container-btn__profile .btn__profile:hover {
   -webkit-animation: 1s ease-out 0s infinite alternate shine;
@@ -216,10 +234,11 @@ body main #listCharacter .profile__article .container-txt__profile .txt__profile
   box-sizing: border-box;
   display: block;
   min-height: 150px;
-  width: 100%;
+  width: 640px;
   padding-right: 10px;
   padding-left: 20px;
   padding-top: 15px;
+  padding-bottom: 15px;
   font-size: 16px;
 }
 

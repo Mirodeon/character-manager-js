@@ -102,6 +102,24 @@ const profileBtn = (data) => {
     });
 };
 
+const delBtn = () => {
+    let delBtns = document.querySelector('.delBtn');
+    delBtns.addEventListener('click', delTab);
+};
+
+const delTab = () => {
+    console.log(`Bye bye :'c`);
+};
+
+const editBtn = () => {
+    let editBtns = document.querySelector('.editorBtn');
+    editBtns.addEventListener('click', profileEditor);
+};
+
+const profileEditor = () => {
+    console.log(`Make Up !!!!!`);
+};
+
 const inputKey = (data) => {
     document.getElementById('name').addEventListener('keyup', event => {
         if (event.key === 'Enter') {
@@ -140,6 +158,9 @@ const profileCharacter = (data, i) => {
     </div>`;
     let txtProfile = document.querySelector('.container-txt__profile');
     txtProfile.lastElementChild.classList.add(`txt__profile`);
+    delBtn();
+    editBtn();
+    console.log(`Voilà la description"${converterMd(data[i].description)}"`);
 };
 
 //dynamic URL

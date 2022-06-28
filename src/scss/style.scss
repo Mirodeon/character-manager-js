@@ -1,10 +1,16 @@
 @import "reset.css";
 @import url('https://fonts.googleapis.com/css2?family=Barlow&family=Road+Rage&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Trispace&display=swap');
+
+* {
+    font-family: 'Trispace', sans-serif;
+}
 
 body {
     header {
         width: 100%;
         text-align: center;
+        font-family: 'Trispace', sans-serif;
 
         .bg__header {
             background: black;
@@ -124,6 +130,7 @@ body {
 
                 &.active {
                     transform: rotateY(180deg);
+                    background: black;
 
                     .container-img__listCard {
                         display: none;
@@ -142,6 +149,7 @@ body {
                         min-height: 100px;
                         align-items: center;
                         justify-content: center;
+                        color: white;
                     }
 
                     .container-btn__listCard {
@@ -157,6 +165,8 @@ body {
                             padding: 5px 5px;
                             font-size: 14px;
                             filter: drop-shadow(-1px 1px 5px white) drop-shadow(-1px -1px 5px white);
+                            background: white;
+                            color: black;
 
                             &:hover {
                                 animation: 1s ease-out 0s infinite alternate shine;
@@ -182,13 +192,15 @@ body {
             }
 
             .profile__article {
-                max-width: 800px;
+                width: 800px;
                 display: flex;
                 filter: drop-shadow(-1px 1px 5px black) drop-shadow(-1px -1px 5px black);
                 border: 10px solid black;
                 border-radius: 20px;
 
                 .container-pictural__profile {
+                    height: 100%;
+                    background: black;
                     .container-img__profile {
                         width: 150px;
                         height: 150px;
@@ -198,17 +210,19 @@ body {
                             display: block;
                             width: 100%;
                             height: 100%;
+                            border-radius: 10px 10px 0px 0px;
                         }
                     }
 
                     .container-btn__profile {
                         display: flex;
                         border-top: 10px solid black;
-                        height: 100px;
+                        min-height: 100px;
                         box-sizing: border-box;
                         align-items: center;
                         justify-content: center;
                         gap: 10px;
+                        background: black;
 
                         .btn__profile {
                             padding: 5px 5px;
@@ -218,6 +232,8 @@ body {
                             border: 1px solid white;
                             filter: drop-shadow(-1px 1px 5px white) drop-shadow(-1px -1px 5px white);
                             text-align: center;
+                            background: white;
+                            color: black;
 
                             &:hover {
                                 animation: 1s ease-out 0s infinite alternate shine;
@@ -246,10 +262,11 @@ body {
                         box-sizing: border-box;
                         display: block;
                         min-height: 150px;
-                        width: 100%;
+                        width: 640px;
                         padding-right: 10px;
                         padding-left: 20px;
                         padding-top: 15px;
+                        padding-bottom: 15px;
                         font-size: 16px;
                     }
                 }
