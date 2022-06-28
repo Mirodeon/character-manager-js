@@ -42,11 +42,14 @@ body header .title__header {
   background: white;
   box-sizing: border-box;
   margin: 0px auto;
-  margin-top: -45px;
+  margin-top: -60px;
   max-width: 300px;
   padding: 15px 0px;
   border: 1px solid black;
   filter: drop-shadow(-1px 1px 5px black) drop-shadow(-1px -1px 5px black);
+}
+body main {
+  margin-bottom: 50px;
 }
 body main #listCharacter {
   display: flex;
@@ -54,7 +57,7 @@ body main #listCharacter {
   max-width: 1024px;
   flex-wrap: wrap;
   margin: 0px auto;
-  margin-top: 25px;
+  margin-top: 40px;
   justify-content: center;
   gap: 20px;
 }
@@ -62,7 +65,7 @@ body main #listCharacter .listCard {
   box-sizing: border-box;
   width: 225px;
   text-align: center;
-  margin: 25px 0px;
+  margin: 20px 0px;
   min-height: 225px;
   border-radius: 50%;
   border: 5px solid black;
@@ -72,6 +75,7 @@ body main #listCharacter .listCard {
   -webkit-animation: 2s ease-out 0s opacit;
           animation: 2s ease-out 0s opacit;
   display: initial;
+  position: relative;
 }
 body main #listCharacter .listCard:hover {
   cursor: pointer;
@@ -128,6 +132,7 @@ body main #listCharacter .listCard.active .container-btn__listCard {
   display: flex;
   gap: 10px;
   justify-content: center;
+  z-index: 1;
 }
 body main #listCharacter .listCard.active .container-btn__listCard .btn__listCard {
   box-sizing: border-box;
@@ -141,6 +146,18 @@ body main #listCharacter .listCard.active .container-btn__listCard .btn__listCar
   -webkit-animation: 1s ease-out 0s infinite alternate shine;
           animation: 1s ease-out 0s infinite alternate shine;
   cursor: pointer;
+}
+body main #listCharacter .listCard .container-img__cardAdd {
+  display: flex;
+  width: 100px;
+  min-height: 225px;
+  margin: 0px auto;
+  align-items: center;
+}
+body main #listCharacter .listCard .container-img__cardAdd .img__cardAdd {
+  width: 100%;
+  display: block;
+  filter: drop-shadow(-1px 1px 5px white) drop-shadow(-1px -1px 5px white);
 }
 
 @-webkit-keyframes opacit {

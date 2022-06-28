@@ -40,19 +40,32 @@ const characterList = (data) => {
     let cardAdd = document.createElement('article');
     listSection.append(cardAdd);
     listSection.lastChild.classList.add(`addController`, `listCard`);
-    listSection.lastChild.innerHTML = `Le dernier Pingouin`;
+    listSection.lastChild.innerHTML = `<div class="container-img__cardAdd">
+    <img class="img__cardAdd" src="${getImageUrl("addCard")}">
+    </div>`;
     console.log(`add last card`);
+    inputBtn();
 };
 
 const searchCharacter = (data) => {
-    let searchSection = document.querySelector('#searchedCharacter');
     let inputName = document.getElementById('name').value;
     let i = 0
-    searchSection.innerHTML = data
+    let listSection = document.querySelector('#listCharacter');
+    listSection.innerHTML = data
         .map((character, idx) => {
             if (character.name == inputName || character.id == inputName) {
                 console.log(`add card ${idx + 1}`)
-                return `<div>Pingouin: ${character.name}<img src="data:image/png;base64,${character.image}"></div>`;
+                return `<article class="listCard">
+                <div class="container-img__listCard">
+                <img class="img__listCard" src="data:image/png;base64,${character.image}">
+                </div>
+                <h1 class="title__listCard">${character.name}</h1>
+                <p class="txt__listCard">${character.shortDescription}</p>
+                <div class="container-btn__listCard">
+                <btn class="btn__listCard addController">ADD</btn>
+                <btn class="btn__listCard">PROFILE</btn>
+                </div>
+                </article>`;
             } else {
                 i++;
                 if (i == data.length) {
@@ -61,11 +74,19 @@ const searchCharacter = (data) => {
             }
         })
         .join(' ');
+    flipCard();
 };
 
-/*const inputBtn = () => {
-    document.getElementById('btnList').addEventListener('click', getList);
-};*/
+const inputBtn = () => {
+    document.querySelector('.resetController').addEventListener('click', getList);
+    let addBtns = [...document.querySelectorAll('.addController')];
+    addBtns.forEach((button, i) => {
+        button.addEventListener('click', () => {
+            addForm();
+        });
+    });
+};
+
 const inputKey = (data) => {
     document.getElementById('name').addEventListener('keyup', event => {
         if (event.key === 'Enter') {
@@ -75,24 +96,33 @@ const inputKey = (data) => {
     });
 };
 
+const addForm = () => {
+    let listSection = document.querySelector('#listCharacter');
+    listSection.innerHTML = "Addform";
+}
+
+//dynamic URL
+const getImageUrl = (name) => {
+    return new URL(`../../src/img/${name}.png`, import.meta.url).href
+};
+
 const flipCard = () => {
     let cards = [...document.querySelectorAll(".listCard")];
     cards.forEach((card, i) => {
-      card.addEventListener('click', () => {
-        if (card.classList.contains('active')) {
-          card.classList.remove('active');
-          /*console.log(`show front card ${i + 1}`);*/
-        } else {
-          cards[i].classList.add('active');
-          /*console.log(`show back card ${i + 1}`);*/
-        }
-      });
-      /*console.log(`add eventlistener flip on card ${i + 1}`);*/
+        card.addEventListener('click', () => {
+            if (card.classList.contains('active')) {
+                card.classList.remove('active');
+                /*console.log(`show front card ${i + 1}`);*/
+            } else {
+                cards[i].classList.add('active');
+                /*console.log(`show back card ${i + 1}`);*/
+            }
+        });
+        /*console.log(`add eventlistener flip on card ${i + 1}`);*/
     });
-  };
+};
 
 const appInit = () => {
-    /*inputBtn();*/
     console.log("bonjour!");
     getList();
     /*inputKey();*/
