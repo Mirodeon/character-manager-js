@@ -17,23 +17,90 @@ const getList = () => {
 };
 
 const characterList = (data) => {
-    let listSection = document.querySelector('#listCharachter');
+    let listSection = document.querySelector('#listCharacter');
     listSection.innerHTML = data
         .map((character, idx) => {
             if (idx < data.length) {
-                /*console.log(`add card ${idx+1}`)*/
-                return `<div>Pingouin ${idx + 1}: ${character.name}<img src="data:image/png;base64,${character.image}"></div>`;
+                return `<article class="listCard">
+                <div class="container-img__listCard">
+                <img class="img__listCard" src="data:image/png;base64,${character.image}">
+                </div>
+                <h1 class="title__listCard">${character.name}</h1>
+                <p class="txt__listCard">${character.shortDescription}</p>
+                <div class="container-btn__listCard">
+                <btn class="btn__listCard addController">ADD</btn>
+                <btn class="btn__listCard">PROFILE</btn>
+                </div>
+                </article>`;
             }
         })
         .join(' ');
     console.log(`add and join character cards`);
-    let cardAdd = document.createElement('div');
+    flipCard();
+    let cardAdd = document.createElement('article');
     listSection.append(cardAdd);
+    listSection.lastChild.classList.add(`addController`, `listCard`);
     listSection.lastChild.innerHTML = `Le dernier Pingouin`;
     console.log(`add last card`);
 };
 
-const getName = () => {
+const searchCharacter = (data) => {
+    let searchSection = document.querySelector('#searchedCharacter');
+    let inputName = document.getElementById('name').value;
+    let i = 0
+    searchSection.innerHTML = data
+        .map((character, idx) => {
+            if (character.name == inputName || character.id == inputName) {
+                console.log(`add card ${idx + 1}`)
+                return `<div>Pingouin: ${character.name}<img src="data:image/png;base64,${character.image}"></div>`;
+            } else {
+                i++;
+                if (i == data.length) {
+                    console.log(`doesn't match ${inputName} :c`);
+                }
+            }
+        })
+        .join(' ');
+};
+
+/*const inputBtn = () => {
+    document.getElementById('btnList').addEventListener('click', getList);
+};*/
+const inputKey = (data) => {
+    document.getElementById('name').addEventListener('keyup', event => {
+        if (event.key === 'Enter') {
+            /*getName();*/
+            searchCharacter(data);
+        }
+    });
+};
+
+const flipCard = () => {
+    let cards = [...document.querySelectorAll(".listCard")];
+    cards.forEach((card, i) => {
+      card.addEventListener('click', () => {
+        if (card.classList.contains('active')) {
+          card.classList.remove('active');
+          /*console.log(`show front card ${i + 1}`);*/
+        } else {
+          cards[i].classList.add('active');
+          /*console.log(`show back card ${i + 1}`);*/
+        }
+      });
+      /*console.log(`add eventlistener flip on card ${i + 1}`);*/
+    });
+  };
+
+const appInit = () => {
+    /*inputBtn();*/
+    console.log("bonjour!");
+    getList();
+    /*inputKey();*/
+};
+appInit();
+
+// get by name or id, 'cause error CORS, has been replaced by searchCharacter.
+/*const getName = () => {
     let inputName = document.getElementById('name').value;
     let url = `https://character-database.becode.xyz/characters`;
     fetch(url)
@@ -49,37 +116,4 @@ const getName = () => {
         .catch(error => {
             console.log('Noob !', error);
         });
-};
-
-const searchCharacter = (data) => {
-    let searchSection = document.querySelector('#searchedCharacter');
-    let inputName = document.getElementById('name').value;
-    searchSection.innerHTML = data
-    .map((character, idx) => {
-        if (character.name == inputName || character.id == inputName) {
-            console.log(`add card ${idx+1}`)
-            return `<div>Pingouin: ${character.name}<img src="data:image/png;base64,${character.image}"></div>`;
-        }
-    })
-    .join(' ');  
-};
-
-/*const inputBtn = () => {
-    document.getElementById('btnList').addEventListener('click', getList);
 };*/
-const inputKey = (data) => {
-    document.getElementById('name').addEventListener('keyup', event => {
-        if (event.key === 'Enter') {
-            /*getName();*/
-            searchCharacter(data);
-        }
-    });
-}
-
-const appInit = () => {
-    /*inputBtn();*/
-    console.log("bonjour!");
-    getList();
-    /*inputKey();*/
-};
-appInit();

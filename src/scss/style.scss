@@ -1,2 +1,188 @@
 @import "reset.css";
 @import url('https://fonts.googleapis.com/css2?family=Barlow&family=Road+Rage&display=swap');
+
+body {
+    header {
+        width: 100%;
+        text-align: center;
+
+        .bg__header {
+            background: black;
+            width: 100%;
+            color: white;
+
+            .nav__header {
+                display: flex;
+                margin: 0px auto;
+                padding: 25px 0px;
+                max-width: 1024px;
+                justify-content: space-between;
+                align-items: center;
+
+                .container__displayController {
+                    display: flex;
+                    gap: 10px;
+
+                    .nav__btn {
+                        box-sizing: border-box;
+                        border: 1px solid white;
+                        min-width: 100px;
+                        padding: 10px 0px;
+                        font-size: 16px;
+                        filter: drop-shadow(-1px 1px 5px white) drop-shadow(-1px -1px 5px white);
+
+                        &:hover {
+                            animation: 1s ease-out 0s infinite alternate shine;
+                            cursor: pointer;
+                        }
+                    }
+                }
+
+                .container__inputName {
+                    filter: drop-shadow(-1px 1px 5px white) drop-shadow(-1px -1px 5px white);
+                }
+            }
+        }
+
+        .title__header {
+            font-size: 48px;
+            background: white;
+            box-sizing: border-box;
+            margin: 0px auto;
+            margin-top: -45px;
+            max-width: 300px;
+            padding: 15px 0px;
+            border: 1px solid black;
+            filter: drop-shadow(-1px 1px 5px black) drop-shadow(-1px -1px 5px black);
+        }
+    }
+
+    main {
+        #listCharacter {
+            display: flex;
+            margin: 0px auto;
+            max-width: 1024px;
+            flex-wrap: wrap;
+            margin: 0px auto;
+            margin-top: 25px;
+            justify-content: center;
+            gap: 20px;
+
+            .listCard {
+                box-sizing: border-box;
+                width: 225px;
+                text-align: center;
+                margin: 25px 0px;
+                min-height: 225px;
+                border-radius: 50%;
+                border: 5px solid black;
+                filter: drop-shadow(-1px 1px 5px black) drop-shadow(-1px -1px 5px black);
+                transform-style: preserve-3d;
+                transition: all 1.5s ease;
+                animation: 2s ease-out 0s opacit;
+                display: initial;
+
+                &:hover {
+                    cursor: pointer;
+                }
+
+                .container-img__listCard {
+                    width: 110px;
+                    height: 110px;
+                    margin-top: 15px;
+                    display: block;
+
+                    .img__listCard {
+                        width: 100%;
+                        height: 100%;
+                        display: block;
+                        border-radius: 10px;
+                        box-sizing: border-box;
+                        border: 5px solid black;
+                        filter: drop-shadow(-1px 1px 1px black) drop-shadow(-1px -1px 1px black);
+                    }
+                }
+
+                .title__listCard {
+                    display: block;
+                    margin: 15px auto;
+                    font-size: 24px;
+                    max-width: 190px;
+                    max-height: 50px;
+                }
+
+                .txt__listCard {
+                    display: none;
+                }
+
+                .container-btn__listCard {
+                    display: none;
+                }
+
+                &.active {
+                    transform: rotateY(180deg);
+
+                    .container-img__listCard {
+                        display: none;
+                    }
+
+                    .title__listCard {
+                        display: none;
+                    }
+
+                    .txt__listCard {
+                        display: flex;
+                        transform: rotateY(180deg);
+                        margin: 20px auto;
+                        width: 150px;
+                        font-size: 18px;
+                        min-height: 100px;
+                        align-items: center;
+                        justify-content: center;
+                    }
+
+                    .container-btn__listCard {
+                        transform: rotateY(180deg);
+                        display: flex;
+                        gap: 10px;
+                        justify-content: center;
+
+                        .btn__listCard {
+                            box-sizing: border-box;
+                            border: 1px solid white;
+                            min-width: 70px;
+                            padding: 5px 5px;
+                            font-size: 14px;
+                            filter: drop-shadow(-1px 1px 5px white) drop-shadow(-1px -1px 5px white);
+
+                            &:hover {
+                                animation: 1s ease-out 0s infinite alternate shine;
+                                cursor: pointer;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@keyframes opacit {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes shine {
+    0% {
+        filter: drop-shadow(-1px 1px 5px white) drop-shadow(-1px -1px 5px white);
+    }
+
+    100% {
+        filter: drop-shadow(-1px 1px 1px white) drop-shadow(-1px -1px 1px white);
+    }
+}
