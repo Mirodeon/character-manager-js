@@ -101,13 +101,15 @@ const profileBtn = (data) => {
     });
 };
 
-const delBtn = () => {
+const delBtn = (data, i) => {
     let delBtns = document.querySelector('.delBtn');
-    delBtns.addEventListener('click', delTab);
+    delBtns.addEventListener('click', delTab(data, i));
 };
 
-const delTab = () => {
+const delTab = (data, i) => {
     console.log(`Bye bye :'c`);
+    console.log(data);
+    console.log(i);
 };
 
 const editBtn = () => {
@@ -155,34 +157,35 @@ const newCharacter = () => {
     var character = {
         description: description,
         //id: "",
-        //image: '',
-        name : name,
+        image: avatar,
+        name: name,
         shortDescription: shortDescription
     };
-    
+
     console.log(character);
-    
+
     axios({
         method: 'post',
         url: url,
         data: character
-        })
+    })
         .then(function (response) {
             console.log(response);
         })
         .catch(function (error) {
             console.log(error);
-    });
+        });
 
     alert(`${character.name}`);
 };
 
 const addForm = () => {
     let listSection = document.querySelector('#listCharacter');
-    
+
     listSection.innerHTML = `
     <form>
     <input type="file" id="formAvatar" name="avatar" accept="image/png, image/jpeg">
+    <button>view log</button>
     <input type="text" id="formName" name="name" placeholder="name">
     <input type="text" id="formShortDescrption" name="shortDescription" placeholder="Short description">
     <input type="text" id="formDescription" name="description" placeholder="Description">
@@ -217,7 +220,7 @@ axios.post(url, newCharacter)
 
 
 const profileCharacter = (data, i) => {
-    
+
     let listSection = document.querySelector('#listCharacter');
     listSection.innerHTML = `<article class="profile__article">
     <div class="container-pictural__profile">
@@ -239,7 +242,7 @@ const profileCharacter = (data, i) => {
         txtProfile.append(addP);
     };
     txtProfile.lastElementChild.classList.add(`txt__profile`);*/
-    delBtn();
+    delBtn(data, i);
     editBtn();
     console.log(`Voilà la description"${converterMd(data[i].description)}"`);
 };
