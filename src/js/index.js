@@ -110,12 +110,12 @@ const delTab = (data, i) => {
     console.log(`Bye bye :'c`);
     console.log(data);
     console.log(i);
-};
+}; */
 
 const editBtn = () => {
     let editBtns = document.querySelector('.editorBtn');
     editBtns.addEventListener('click', profileEditor);
-}; */
+};
 
 const delBtn = (data, i) => {
     let delBtns = document.querySelector('.delBtn');
@@ -223,32 +223,40 @@ const addForm = () => {
     <input type="submit" id="submit" value="Submit">
     <p id="status"></p>
     <div><img id="output"></div>`;
+
+    ///// test wysiwyg
+    //const wysiwyg = document.querySelector(`input`);
+
+    tinymce.init({
+        selector: `input#formDescription`
+    });
+    /////////
     const viewImgFormat = () => {
         
-      const status = document.getElementById('status');
-      const output = document.getElementById('output');
-      if (window.FileList && window.File && window.FileReader) {
-        document.getElementById('formAvatar').addEventListener('change', event => {
-          output.src = '';
-          status.textContent = '';
-          const file = event.target.files[0];
-          if (!file.type) {
-            status.textContent = 'Error: The File.type property does not appear to be supported on this browser.';
-            return;
-          }
-          if (!file.type.match('image.*')) {
-            status.textContent = 'Error: The selected file does not appear to be an image.'
-            return;
-          }
-          const reader = new FileReader();
-          reader.addEventListener('load', event => {
-            output.src = event.target.result;
-          });
-          reader.readAsDataURL(file);
-        }); 
-      }
-    
-      };
+        const status = document.getElementById('status');
+        const output = document.getElementById('output');
+            if (window.FileList && window.File && window.FileReader) {
+                document.getElementById('formAvatar').addEventListener('change', event => {
+                    output.src = '';
+                    status.textContent = '';
+                    const file = event.target.files[0];
+                    if (!file.type) {
+                    status.textContent = 'Error: The File.type property does not appear to be supported on this browser.';
+                    return;
+                    }
+                    if (!file.type.match('image.*')) {
+                    status.textContent = 'Error: The selected file does not appear to be an image.'
+                    return;
+                    }
+                    const reader = new FileReader();
+                    reader.addEventListener('load', event => {
+                    output.src = event.target.result;
+                    });
+                    reader.readAsDataURL(file);
+                }); 
+            }
+        };
+
     viewImgFormat();
 
     console.log('form created');
