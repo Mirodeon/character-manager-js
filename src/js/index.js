@@ -101,7 +101,7 @@ const profileBtn = (data) => {
     });
 };
 
-const delBtn = (data, i) => {
+/* const delBtn = (data, i) => {
     let delBtns = document.querySelector('.delBtn');
     delBtns.addEventListener('click', delTab(data, i));
 };
@@ -115,6 +115,37 @@ const delTab = (data, i) => {
 const editBtn = () => {
     let editBtns = document.querySelector('.editorBtn');
     editBtns.addEventListener('click', profileEditor);
+}; */
+
+const delBtn = (data, i) => {
+    let delBtns = document.querySelector('.delBtn');
+
+    delBtns.addEventListener('click', () => {
+        delTab(data, i);
+    });
+
+    console.log(`le boutton delete est sur ecoute`);
+};
+
+const delTab = (data, i) => {
+
+    console.log(`ceci est la fonction pr delete un character`);
+    alert(`${data[i].name} will be delete`)
+
+    axios({
+        method: 'delete',
+        url: `https://character-database.becode.xyz/characters/${data[i].id}`,
+        data: data[i]
+    }) 
+        .then(function () {
+                console.log(`${data[i].name} has been deleted`);
+                getList();
+            })
+            .catch(function (error) {
+                console.log(error.response.data);
+            });
+    
+    console.log(data[i].id);
 };
 
 const profileEditor = () => {
