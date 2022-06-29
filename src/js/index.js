@@ -101,21 +101,7 @@ const profileBtn = (data) => {
     });
 };
 
-/* const delBtn = (data, i) => {
-    let delBtns = document.querySelector('.delBtn');
-    delBtns.addEventListener('click', delTab(data, i));
-};
 
-const delTab = (data, i) => {
-    console.log(`Bye bye :'c`);
-    console.log(data);
-    console.log(i);
-};
-
-const editBtn = () => {
-    let editBtns = document.querySelector('.editorBtn');
-    editBtns.addEventListener('click', profileEditor);
-}; */
 
 const delBtn = (data, i) => {
     let delBtns = document.querySelector('.delBtn');
@@ -136,21 +122,19 @@ const delTab = (data, i) => {
         method: 'delete',
         url: `https://character-database.becode.xyz/characters/${data[i].id}`,
         data: data[i]
-    }) 
+    })
         .then(function () {
-                console.log(`${data[i].name} has been deleted`);
-                getList();
-            })
-            .catch(function (error) {
-                console.log(error.response.data);
-            });
-    
+            console.log(`${data[i].name} has been deleted`);
+            getList();
+        })
+        .catch(function (error) {
+            console.log(error.response.data);
+        });
+
     console.log(data[i].id);
 };
 
-const profileEditor = () => {
-    console.log(`Make Up !!!!!`);
-};
+
 
 const inputKey = (data) => {
     document.getElementById('name').addEventListener('keyup', event => {
@@ -182,7 +166,7 @@ const newCharacter = () => {
     let description = document.getElementById('formDescription').value;
     let shortDescription = document.getElementById('formShortDescription').value;
     let avatar = document.getElementById('output').src;
-    let dataImg = avatar.replace('data:image/png;base64,', '');
+    let dataImg = avatar.replace('data:image/png;base64,', '').replace('data:image/jpeg;base64,', '');
 
     alert(`the new charrater name is ${name}`);
 
@@ -223,32 +207,33 @@ const addForm = () => {
     <input type="submit" id="submit" value="Submit">
     <p id="status"></p>
     <div><img id="output"></div>`;
+
     const viewImgFormat = () => {
-        
-      const status = document.getElementById('status');
-      const output = document.getElementById('output');
-      if (window.FileList && window.File && window.FileReader) {
-        document.getElementById('formAvatar').addEventListener('change', event => {
-          output.src = '';
-          status.textContent = '';
-          const file = event.target.files[0];
-          if (!file.type) {
-            status.textContent = 'Error: The File.type property does not appear to be supported on this browser.';
-            return;
-          }
-          if (!file.type.match('image.*')) {
-            status.textContent = 'Error: The selected file does not appear to be an image.'
-            return;
-          }
-          const reader = new FileReader();
-          reader.addEventListener('load', event => {
-            output.src = event.target.result;
-          });
-          reader.readAsDataURL(file);
-        }); 
-      }
-    
-      };
+
+        const status = document.getElementById('status');
+        const output = document.getElementById('output');
+        if (window.FileList && window.File && window.FileReader) {
+            document.getElementById('formAvatar').addEventListener('change', event => {
+                output.src = '';
+                status.textContent = '';
+                const file = event.target.files[0];
+                if (!file.type) {
+                    status.textContent = 'Error: The File.type property does not appear to be supported on this browser.';
+                    return;
+                }
+                if (!file.type.match('image.*')) {
+                    status.textContent = 'Error: The selected file does not appear to be an image.'
+                    return;
+                }
+                const reader = new FileReader();
+                reader.addEventListener('load', event => {
+                    output.src = event.target.result;
+                });
+                reader.readAsDataURL(file);
+            });
+        }
+
+    };
     viewImgFormat();
 
     console.log('form created');
@@ -278,9 +263,28 @@ const profileCharacter = (data, i) => {
     console.log(`Voilà la description"${converterMd(data[i].description)}"`);
 };
 
+const editBtn = () => {
+    let editBtns = document.querySelector('.editorBtn');
+    editBtns.addEventListener('click', profilEditor);
+};
+
+const profilEditor = () => {
+    console.log(`Make Up !!!!!`);
+    let containerImg = document.querySelector('.container-img__profile');
+    containerImg.addEventListener('click', () => {
+        flip(containerImg);
+    });
+};
 //dynamic URL
 const getImageUrl = (name) => {
     return new URL(`../../src/img/${name}.png`, import.meta.url).href
+};
+const flip = (e) => {
+    if (e.classList.contains('active')) {
+        e.classList.remove('active');
+    } else {
+        e.classList.add('active');
+    }
 };
 
 const flipCard = () => {
