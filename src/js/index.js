@@ -150,14 +150,15 @@ const newCharacter = () => {
     let name = document.getElementById(`formName`).value;
     let description = document.getElementById('formDescription').value;
     let shortDescription = document.getElementById('formShortDescription').value;
-    let avatar = document.getElementById('formAvatar');
+    let avatar = document.getElementById('output').src;
+    let dataImg = avatar.replace('data:image/png;base64,', '');
 
     alert(`the new charrater name is ${name}`);
 
     var character = {
         description: description,
         //id: "",
-        image: avatar,
+        image: dataImg,
         name: name,
         shortDescription: shortDescription
     };
@@ -171,6 +172,7 @@ const newCharacter = () => {
     })
         .then(function (response) {
             console.log(response);
+            getList();
         })
         .catch(function (error) {
             console.log(error);
@@ -183,41 +185,45 @@ const addForm = () => {
     let listSection = document.querySelector('#listCharacter');
 
     listSection.innerHTML = `
-    <form>
     <input type="file" id="formAvatar" name="avatar" accept="image/png, image/jpeg">
-    <button>view log</button>
     <input type="text" id="formName" name="name" placeholder="name">
-    <input type="text" id="formShortDescrption" name="shortDescription" placeholder="Short description">
+    <input type="text" id="formShortDescription" name="shortDescription" placeholder="Short description">
     <input type="text" id="formDescription" name="description" placeholder="Description">
     <input type="submit" id="submit" value="Submit">
-    </form>
-    `;
+    <p id="status"></p>
+    <div><img id="output"></div>`;
+    const viewImgFormat = () => {
+        
+      const status = document.getElementById('status');
+      const output = document.getElementById('output');
+      if (window.FileList && window.File && window.FileReader) {
+        document.getElementById('formAvatar').addEventListener('change', event => {
+          output.src = '';
+          status.textContent = '';
+          const file = event.target.files[0];
+          if (!file.type) {
+            status.textContent = 'Error: The File.type property does not appear to be supported on this browser.';
+            return;
+          }
+          if (!file.type.match('image.*')) {
+            status.textContent = 'Error: The selected file does not appear to be an image.'
+            return;
+          }
+          const reader = new FileReader();
+          reader.addEventListener('load', event => {
+            output.src = event.target.result;
+          });
+          reader.readAsDataURL(file);
+        }); 
+      }
+    
+      };
+    viewImgFormat();
 
     console.log('form created');
 
     document.getElementById('submit').addEventListener('click', newCharacter);
 };
-
-/* const newCharacter = () => {
-    let url = 'https://character-database.becode.xyz/characters';
-    let name = document.getElementById('formName');
-    let shortDescription = document.getElementById('formShortDescription');
-    let description = document.getElementById('formDescription');
-
-        //const listSection = document.querySelector('#listCharacter');
-    const newCharacter = { description: '',
-                            id: ${name},
-                            image: '',
-                            name: ${name},
-                            shortDescription: ${shortDescription}
-                        };
-axios.post(url, newCharacter)
-    //.then(response => listSection.innerHTML = response.character.id);
-    .then(response => console.log(response.character.id));
-}; */
-
-
-
 
 const profileCharacter = (data, i) => {
 
@@ -236,12 +242,6 @@ const profileCharacter = (data, i) => {
     <h1 class="title__profile">${data[i].name}</h1>
     <div class="txt__profile">${converterMd(data[i].description)}</div>
     </div>`;
-    /*let txtProfile = document.querySelector('.container-txt__profile');
-    if (converterMd(data[i].description) == "") {
-        let addP = document.createElement('p');
-        txtProfile.append(addP);
-    };
-    txtProfile.lastElementChild.classList.add(`txt__profile`);*/
     delBtn(data, i);
     editBtn();
     console.log(`Voilà la description"${converterMd(data[i].description)}"`);
@@ -282,7 +282,6 @@ const appInit = () => {
     console.log("bonjour!");
     getList();
     listBtn();
-    axios.delete('https://character-database.becode.xyz/characters/:a142285a-41b0-4e43-b9ad-6ef7c9a1ee84')
 };
 appInit();
 
