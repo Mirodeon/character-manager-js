@@ -102,19 +102,6 @@ const profileBtn = (data) => {
 };
 
 
-<<<<<<< HEAD
-const delTab = (data, i) => {
-    console.log(`Bye bye :'c`);
-    console.log(data);
-    console.log(i);
-}; */
-
-const editBtn = () => {
-    let editBtns = document.querySelector('.editorBtn');
-    editBtns.addEventListener('click', profileEditor);
-};
-=======
->>>>>>> 9377c689ec602aa4e71cc46e8acea6b8a3addce9
 
 const delBtn = (data, i) => {
     let delBtns = document.querySelector('.delBtn');
@@ -221,7 +208,6 @@ const addForm = () => {
     <p id="status"></p>
     <div><img id="output"></div>`;
 
-<<<<<<< HEAD
     ///// test wysiwyg
     //const wysiwyg = document.querySelector(`input`);
 
@@ -255,34 +241,6 @@ const addForm = () => {
             }
         };
 
-=======
-    const viewImgFormat = () => {
-
-        const status = document.getElementById('status');
-        const output = document.getElementById('output');
-        if (window.FileList && window.File && window.FileReader) {
-            document.getElementById('formAvatar').addEventListener('change', event => {
-                output.src = '';
-                status.textContent = '';
-                const file = event.target.files[0];
-                if (!file.type) {
-                    status.textContent = 'Error: The File.type property does not appear to be supported on this browser.';
-                    return;
-                }
-                if (!file.type.match('image.*')) {
-                    status.textContent = 'Error: The selected file does not appear to be an image.'
-                    return;
-                }
-                const reader = new FileReader();
-                reader.addEventListener('load', event => {
-                    output.src = event.target.result;
-                });
-                reader.readAsDataURL(file);
-            });
-        }
-
-    };
->>>>>>> 9377c689ec602aa4e71cc46e8acea6b8a3addce9
     viewImgFormat();
 
     console.log('form created');
