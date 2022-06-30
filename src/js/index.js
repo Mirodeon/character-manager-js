@@ -195,6 +195,31 @@ const newCharacter = () => {
 
     alert(`${character.name}`);
 };
+const viewImgFormat = () => {
+
+    const status = document.getElementById('status');
+    const output = document.getElementById('output');
+    if (window.FileList && window.File && window.FileReader) {
+        document.getElementById('formAvatar').addEventListener('change', event => {
+            output.src = '';
+            status.textContent = '';
+            const file = event.target.files[0];
+            if (!file.type) {
+                status.textContent = 'Error: The File.type property does not appear to be supported on this browser.';
+                return;
+            }
+            if (!file.type.match('image.*')) {
+                status.textContent = 'Error: The selected file does not appear to be an image.'
+                return;
+            }
+            const reader = new FileReader();
+            reader.addEventListener('load', event => {
+                output.src = event.target.result;
+            });
+            reader.readAsDataURL(file);
+        });
+    }
+};
 
 const addForm = () => {
     let listSection = document.querySelector('#listCharacter');
@@ -210,36 +235,12 @@ const addForm = () => {
 
     ///// test wysiwyg
     //const wysiwyg = document.querySelector(`input`);
-
+    /*
     tinymce.init({
         selector: `input#formDescription`
-    });
+    });*/
     /////////
-    const viewImgFormat = () => {
-        
-        const status = document.getElementById('status');
-        const output = document.getElementById('output');
-            if (window.FileList && window.File && window.FileReader) {
-                document.getElementById('formAvatar').addEventListener('change', event => {
-                    output.src = '';
-                    status.textContent = '';
-                    const file = event.target.files[0];
-                    if (!file.type) {
-                    status.textContent = 'Error: The File.type property does not appear to be supported on this browser.';
-                    return;
-                    }
-                    if (!file.type.match('image.*')) {
-                    status.textContent = 'Error: The selected file does not appear to be an image.'
-                    return;
-                    }
-                    const reader = new FileReader();
-                    reader.addEventListener('load', event => {
-                    output.src = event.target.result;
-                    });
-                    reader.readAsDataURL(file);
-                }); 
-            }
-        };
+
 
     viewImgFormat();
 
@@ -255,15 +256,25 @@ const profileCharacter = (data, i) => {
     <div class="container-pictural__profile">
     <div class="container-img__profile">
     <img class="img__profile" src="data:image/png;base64,${data[i].image}">
+    <div class="container-inputImg__edit">
+    <input class="inputImg__edit" type="file" id="formAvatar" name="avatar" accept="image/png, image/jpeg">
+    <p id="status"></p>
+    <div class="container-img__edit"><img class="img__edit" id="output"></div>
+    </div>
     </div>
     <div class="container-btn__profile">
     <btn class="btn__profile editorBtn">EDIT</btn>
     <btn class="btn__profile delBtn">DEL</btn>
+    <btn class="btn__profile cancelBtn">QUIT</btn>
+    <btn class="btn__profile sendBtn">SEND</btn>
     </div>
     </div>
     <div class="container-txt__profile">
     <h1 class="title__profile">${data[i].name}</h1>
     <div class="txt__profile">${converterMd(data[i].description)}</div>
+    <input type="text" id="editName" name="name" placeholder="name">
+    <input type="text" id="editShortDescription" name="shortDescription" placeholder="Short description">
+    <input type="text" id="editDescription" name="description" placeholder="Description">
     </div>`;
     delBtn(data, i);
     editBtn();
@@ -272,15 +283,24 @@ const profileCharacter = (data, i) => {
 
 const editBtn = () => {
     let editBtns = document.querySelector('.editorBtn');
-    editBtns.addEventListener('click', profilEditor);
+    let containerBtn = document.querySelector('.container-btn__profile');
+    let containerTxt = document.querySelector('.container-txt__profile');
+    let containerImg = document.querySelector('.container-img__profile');
+    editBtns.addEventListener('click', () => {
+        profilEditor();
+        flip(containerBtn);
+        flip(containerTxt);
+        flip(containerImg);
+    });
 };
 
 const profilEditor = () => {
     console.log(`Make Up !!!!!`);
-    let containerImg = document.querySelector('.container-img__profile');
+    viewImgFormat();
+    /*let containerImg = document.querySelector('.container-img__profile');
     containerImg.addEventListener('click', () => {
         flip(containerImg);
-    });
+    });*/
 };
 //dynamic URL
 const getImageUrl = (name) => {

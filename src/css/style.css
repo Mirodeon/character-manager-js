@@ -200,6 +200,31 @@ body main #listCharacter .profile__article .container-pictural__profile .contain
   height: 100%;
   border-radius: 10px 10px 0px 0px;
 }
+body main #listCharacter .profile__article .container-pictural__profile .container-img__profile .container-inputImg__edit {
+  display: none;
+}
+body main #listCharacter .profile__article .container-pictural__profile .container-img__profile.active .img__profile {
+  display: none;
+}
+body main #listCharacter .profile__article .container-pictural__profile .container-img__profile.active .container-inputImg__edit {
+  display: block;
+}
+body main #listCharacter .profile__article .container-pictural__profile .container-img__profile.active .container-inputImg__edit .inputImg__edit {
+  margin: 0 auto;
+  width: 150px;
+}
+body main #listCharacter .profile__article .container-pictural__profile .container-img__profile.active .container-inputImg__edit .container-img__edit {
+  width: 120px;
+  height: 120px;
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+body main #listCharacter .profile__article .container-pictural__profile .container-img__profile.active .container-inputImg__edit .container-img__edit .img__edit {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
 body main #listCharacter .profile__article .container-pictural__profile .container-btn__profile {
   display: flex;
   border-top: 10px solid black;
@@ -227,10 +252,30 @@ body main #listCharacter .profile__article .container-pictural__profile .contain
 body main #listCharacter .profile__article .container-pictural__profile .container-btn__profile .btn__profile.delBtn {
   border-radius: 0 50% 50% 0;
 }
+body main #listCharacter .profile__article .container-pictural__profile .container-btn__profile .btn__profile.cancelBtn {
+  display: none;
+}
+body main #listCharacter .profile__article .container-pictural__profile .container-btn__profile .btn__profile.sendBtn {
+  display: none;
+}
 body main #listCharacter .profile__article .container-pictural__profile .container-btn__profile .btn__profile:hover {
   -webkit-animation: 1s ease-out 0s infinite alternate shine;
           animation: 1s ease-out 0s infinite alternate shine;
   cursor: pointer;
+}
+body main #listCharacter .profile__article .container-pictural__profile .container-btn__profile.active .btn__profile.editorBtn {
+  display: none;
+}
+body main #listCharacter .profile__article .container-pictural__profile .container-btn__profile.active .btn__profile.delBtn {
+  display: none;
+}
+body main #listCharacter .profile__article .container-pictural__profile .container-btn__profile.active .btn__profile.cancelBtn {
+  display: initial;
+  border-radius: 50% 0 0 50%;
+}
+body main #listCharacter .profile__article .container-pictural__profile .container-btn__profile.active .btn__profile.sendBtn {
+  display: initial;
+  border-radius: 0 50% 50% 0;
 }
 body main #listCharacter .profile__article .container-txt__profile {
   border-left: 10px solid black;
@@ -256,6 +301,30 @@ body main #listCharacter .profile__article .container-txt__profile .txt__profile
   padding-top: 15px;
   padding-bottom: 15px;
   font-size: 16px;
+}
+body main #listCharacter .profile__article .container-txt__profile #editName {
+  display: none;
+}
+body main #listCharacter .profile__article .container-txt__profile #editShortDescription {
+  display: none;
+}
+body main #listCharacter .profile__article .container-txt__profile #editDescription {
+  display: none;
+}
+body main #listCharacter .profile__article .container-txt__profile.active .title__profile {
+  display: none;
+}
+body main #listCharacter .profile__article .container-txt__profile.active .txt__profile {
+  display: none;
+}
+body main #listCharacter .profile__article .container-txt__profile.active #editName {
+  display: block;
+}
+body main #listCharacter .profile__article .container-txt__profile.active #editShortDescription {
+  display: block;
+}
+body main #listCharacter .profile__article .container-txt__profile.active #editDescription {
+  display: block;
 }
 
 @-webkit-keyframes opacit {
