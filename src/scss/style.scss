@@ -65,6 +65,7 @@ body {
 
     main {
         margin-bottom: 50px;
+        position: relative;
 
         #listCharacter {
             display: flex;
@@ -89,7 +90,6 @@ body {
                 transition: all 1.5s ease;
                 animation: 3s ease-out 0s opacit;
                 display: initial;
-                position: relative;
 
                 &:hover {
                     cursor: pointer;
@@ -532,6 +532,68 @@ body {
                         padding-bottom: 15px;
                         font-size: 14px;
                         resize: vertical;
+                    }
+                }
+            }
+        }
+
+        #popup {
+            .popupDel {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                box-sizing: border-box;
+                width: 225px;
+                text-align: center;
+                min-height: 225px;
+                border-radius: 50%;
+                border: 5px solid black;
+                filter: drop-shadow(-1px 1px 5px black) drop-shadow(-1px -1px 5px black);
+                animation: 0.75s ease-out 0s opacit;
+                background: rgba(0, 0, 0, 0.375);
+
+                .txt__popupDel {
+                    display: flex;
+                    margin: 20px auto;
+                    width: 150px;
+                    font-size: 18px;
+                    min-height: 100px;
+                    align-items: center;
+                    justify-content: center;
+                    color: white;
+                }
+
+                .container-btn__popupDel {
+                    display: flex;
+                    gap: 10px;
+                    justify-content: center;
+
+                    .btn__popupDel {
+                        box-sizing: border-box;
+                        border: 1px solid white;
+                        min-width: 70px;
+                        padding: 5px 5px;
+                        font-size: 14px;
+                        filter: drop-shadow(-1px 1px 2px white) drop-shadow(-1px -1px 2px white);
+                        background: white;
+                        color: black;
+
+                        &.noBtn {
+                            border-radius: 50% 0 0 50%;
+                            padding-left: 10px;
+                        }
+
+                        &.yesBtn {
+                            border-radius: 0 50% 50% 0;
+                            padding-right: 10px;
+
+                        }
+
+                        &:hover {
+                            animation: 1s ease-out 0s infinite alternate shine;
+                            cursor: pointer;
+                        }
                     }
                 }
             }

@@ -1,4 +1,6 @@
 const getList = () => {
+    let popup = document.getElementById('popup');
+    popup.innerHTML = ``;
     let url = 'https://character-database.becode.xyz/characters';
     fetch(url)
         .then(response => {
@@ -48,6 +50,8 @@ const characterList = (data) => {
 };
 
 const searchCharacter = (data) => {
+    let popup = document.getElementById('popup');
+    popup.innerHTML = ``;
     let inputName = document.getElementById('name').value;
     let i = 0
     let listSection = document.querySelector('#listCharacter');
@@ -107,31 +111,40 @@ const delBtn = (data, i) => {
     let delBtns = document.querySelector('.delBtn');
 
     delBtns.addEventListener('click', () => {
-        delTab(data, i);
+        delPopup(data, i);
     });
 
     console.log(`le boutton delete est sur ecoute`);
 };
 
-const delTab = (data, i) => {
-
-    console.log(`ceci est la fonction pr delete un character`);
-    alert(`${data[i].name} will be delete`)
-
-    axios({
-        method: 'delete',
-        url: `https://character-database.becode.xyz/characters/${data[i].id}`,
-        data: data[i]
-    })
-        .then(function () {
-            console.log(`${data[i].name} has been deleted`);
-            getList();
+const delPopup = (data, i) => {
+    let popup = document.getElementById('popup');
+    popup.innerHTML = `<article class="popupDel">
+    <p class="txt__popupDel">Are you sure?</p>
+    <div class="container-btn__popupDel">
+    <btn class="btn__popupDel noBtn">NO</btn>
+    <btn class="btn__popupDel yesBtn">YES</btn>
+    </div>
+    </article>`;
+    let noBtns = document.querySelector('.noBtn');
+    noBtns.addEventListener('click', () => {
+        popup.innerHTML = ``;
+    });
+    let yesBtns = document.querySelector('.yesBtn');
+    yesBtns.addEventListener('click', () => {
+        axios({
+            method: 'delete',
+            url: `https://character-database.becode.xyz/characters/${data[i].id}`,
+            data: data[i]
         })
-        .catch(function (error) {
-            console.log(error.response.data);
-        });
-
-    console.log(data[i].id);
+            .then(function () {
+                console.log(`${data[i].name} has been deleted`);
+                getList();
+            })
+            .catch(function (error) {
+                console.log(error.response.data);
+            });
+    });
 };
 
 
@@ -210,14 +223,9 @@ const viewImgFormat = () => {
 };
 
 const addForm = () => {
+    let popup = document.getElementById('popup');
+    popup.innerHTML = ``;
     let listSection = document.querySelector('#listCharacter');
-/*<input type="file" id="formAvatar" name="avatar" accept="image/png, image/jpeg">
-    <input type="text" id="formName" name="name" placeholder="name">
-    <textarea type="text" id="formShortDescription" name="shortDescription" placeholder="Short description"></textarea>
-    <textarea type="text" id="formDescription" name="description" placeholder="Description"></textarea>
-    <input type="submit" id="submit" value="Submit">
-    <p id="status"></p>
-    <div><img id="output"></div>*/
     listSection.innerHTML = `<article class="addProfile__article">
     <div class="container-pictural__addProfile">
     <div class="container-img__addProfile">
@@ -340,6 +348,8 @@ const editBtn = () => {
     let containerTxt = document.querySelector('.container-txt__profile');
     let containerImg = document.querySelector('.container-img__profile');
     editBtns.addEventListener('click', () => {
+        let popup = document.getElementById('popup');
+        popup.innerHTML = ``;
         flip(containerBtn);
         flip(containerTxt);
         flip(containerImg);
