@@ -35,6 +35,7 @@ body {
                         min-width: 100px;
                         padding: 10px 0px;
                         font-size: 16px;
+                        max-height: 38px;
                         filter: drop-shadow(-1px 1px 5px white) drop-shadow(-1px -1px 5px white);
 
                         &:hover {
@@ -45,6 +46,10 @@ body {
                 }
 
                 .container__inputName {
+                    display: flex;
+                    flex-direction: column;
+                    min-width: 210px;
+                    max-height: 38px;
                     filter: drop-shadow(-1px 1px 5px white) drop-shadow(-1px -1px 5px white);
                 }
             }

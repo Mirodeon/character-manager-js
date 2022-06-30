@@ -33,6 +33,7 @@ body header .bg__header .nav__header .container__displayController .nav__btn {
   min-width: 100px;
   padding: 10px 0px;
   font-size: 16px;
+  max-height: 38px;
   filter: drop-shadow(-1px 1px 5px white) drop-shadow(-1px -1px 5px white);
 }
 body header .bg__header .nav__header .container__displayController .nav__btn:hover {
@@ -41,6 +42,10 @@ body header .bg__header .nav__header .container__displayController .nav__btn:hov
   cursor: pointer;
 }
 body header .bg__header .nav__header .container__inputName {
+  display: flex;
+  flex-direction: column;
+  min-width: 210px;
+  max-height: 38px;
   filter: drop-shadow(-1px 1px 5px white) drop-shadow(-1px -1px 5px white);
 }
 body header .title__header {

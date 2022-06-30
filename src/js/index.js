@@ -10,7 +10,6 @@ const getList = () => {
         .then(data => {
             console.log(data);
             characterList(data);
-            inputKey(data);
         })
         .catch(error => {
             console.log('Noob !', error);
@@ -36,7 +35,6 @@ const characterList = (data) => {
             }
         })
         .join(' ');
-    console.log(`add and join character cards`);
     flipCard();
     let cardAdd = document.createElement('article');
     listSection.append(cardAdd);
@@ -44,43 +42,45 @@ const characterList = (data) => {
     listSection.lastChild.innerHTML = `<div class="container-img__cardAdd">
     <img class="img__cardAdd" src="${getImageUrl("addCard")}">
     </div>`;
-    console.log(`add last card`);
     addBtn();
     profileBtn(data);
 };
 
-const searchCharacter = (data) => {
-    let popup = document.getElementById('popup');
-    popup.innerHTML = ``;
-    let inputName = document.getElementById('name').value;
-    let i = 0
-    let listSection = document.querySelector('#listCharacter');
-    listSection.innerHTML = data
-        .map((character, idx) => {
-            if (character.name == inputName || character.id == inputName) {
-                console.log(`add card ${idx + 1}`)
-                return `<article class="listCard">
-                <div class="container-img__listCard">
-                <img class="img__listCard" src="data:image/png;base64,${character.image}">
-                </div>
-                <h1 class="title__listCard">${character.name}</h1>
-                <p class="txt__listCard">${character.shortDescription}</p>
-                <div class="container-btn__listCard">
-                <btn class="btn__listCard addController">ADD</btn>
-                <btn class="btn__listCard profile-btn">PROFILE</btn>
-                </div>
-                </article>`;
-            } else {
-                i++;
-                if (i == data.length) {
-                    console.log(`doesn't match ${inputName} :c`);
-                }
-            }
-        })
-        .join(' ');
-    flipCard();
-    addBtn();
-    profileBtn(data);
+const inputKey = () => {
+    document.getElementById('name').addEventListener('keyup', event => {
+        if (event.key === 'Enter') {
+            let inputName = document.getElementById('name').value;
+            let url = `https://character-database.becode.xyz/characters?name=${inputName}`;
+            axios({
+                method: 'get',
+                url: url,
+            })
+                .then(response => {
+                    console.log(response.data);
+                    characterList(response.data);
+                })
+                .catch(error => {
+                    console.log('Noob!', error);
+                });
+        };
+    });
+    document.getElementById('id').addEventListener('keyup', event => {
+        if (event.key === 'Enter') {
+            let inputId = document.getElementById('id').value;
+            let url = `https://character-database.becode.xyz/characters/${inputId}`;
+            axios({
+                method: 'get',
+                url: url,
+            })
+                .then(response => {
+                    console.log(response.data);
+                    characterList(response.data);
+                })
+                .catch(error => {
+                    console.log('Noob!', error);
+                });
+        };
+    });
 };
 
 const listBtn = () => {
@@ -105,16 +105,11 @@ const profileBtn = (data) => {
     });
 };
 
-
-
 const delBtn = (data, i) => {
     let delBtns = document.querySelector('.delBtn');
-
     delBtns.addEventListener('click', () => {
         delPopup(data, i);
     });
-
-    console.log(`le boutton delete est sur ecoute`);
 };
 
 const delPopup = (data, i) => {
@@ -135,67 +130,45 @@ const delPopup = (data, i) => {
         axios({
             method: 'delete',
             url: `https://character-database.becode.xyz/characters/${data[i].id}`,
-            data: data[i]
         })
-            .then(function () {
-                console.log(`${data[i].name} has been deleted`);
+            .then(response => {
+                console.log(response);
                 getList();
             })
-            .catch(function (error) {
-                console.log(error.response.data);
+            .catch(error => {
+                console.log('Noob!', error);
             });
     });
 };
 
-
-
-const inputKey = (data) => {
-    document.getElementById('name').addEventListener('keyup', event => {
-        if (event.key === 'Enter') {
-            /*getName();*/
-            searchCharacter(data);
-        }
-    });
-};
-
 const newCharacter = () => {
-
-    console.log('form submited');
-
     let url = 'https://character-database.becode.xyz/characters';
     let name = document.getElementById(`formName`).value;
     let description = document.getElementById('formDescription').value;
     let shortDescription = document.getElementById('formShortDescription').value;
     let avatar = document.getElementById('output').src;
     let dataImg = avatar.replace('data:image/png;base64,', '').replace('data:image/jpeg;base64,', '');
-
-    alert(`the new charrater name is ${name}`);
-
     var character = {
         description: description,
-        //id: "",
         image: dataImg,
         name: name,
         shortDescription: shortDescription
     };
-
     console.log(character);
-
     axios({
         method: 'post',
         url: url,
         data: character
     })
-        .then(function (response) {
+        .then(response => {
             console.log(response);
             getList();
         })
-        .catch(function (error) {
-            console.log(error);
+        .catch(error => {
+            console.log('Noob!', error);
         });
-
-    alert(`${character.name}`);
 };
+
 const viewImgFormat = () => {
 
     let status = document.getElementById('status');
@@ -219,7 +192,7 @@ const viewImgFormat = () => {
             });
             reader.readAsDataURL(file);
         });
-    }
+    };
 };
 
 const addForm = () => {
@@ -245,26 +218,12 @@ const addForm = () => {
     <textarea type="text" id="formShortDescription" name="shortDescription" placeholder="Short description"></textarea>
     <textarea type="text" id="formDescription" name="description" placeholder="Description"></textarea>
     </div></article>`;
-
-    ///// test wysiwyg
-    //const wysiwyg = document.querySelector(`input`);
-    /*
-    tinymce.init({
-        selector: `input#formDescription`
-    });*/
-    /////////
-
-
     viewImgFormat();
-
-    console.log('form created');
-
     document.querySelector('.submitBtn').addEventListener('click', newCharacter);
     document.querySelector('.quitBtn').addEventListener('click', getList);
 };
 
 const profileCharacter = (data, i) => {
-
     let listSection = document.querySelector('#listCharacter');
     listSection.innerHTML = `<article class="profile__article">
     <div class="container-pictural__profile">
@@ -293,7 +252,6 @@ const profileCharacter = (data, i) => {
     delBtn(data, i);
     editBtn();
     sendBtn(data, i);
-    console.log(`Voilà la description"${converterMd(data[i].description)}"`);
 };
 
 const sendBtn = (data, i) => {
@@ -317,11 +275,9 @@ const sendBtn = (data, i) => {
         };
         if (avatar == "") {
             dataImg = data[i].image;
-            console.log(dataImg);
         };
         var character = {
             description: description,
-            //id: "",
             image: dataImg,
             name: name,
             shortDescription: shortDescription
@@ -362,14 +318,13 @@ const editBtn = () => {
 };
 
 const profilEditor = () => {
-    console.log(`Make Up !!!!!`);
     viewImgFormat();
 };
 
-//dynamic URL
 const getImageUrl = (name) => {
     return new URL(`../../src/img/${name}.png`, import.meta.url).href
 };
+
 const flip = (e) => {
     if (e.classList.contains('active')) {
         e.classList.remove('active');
@@ -384,15 +339,13 @@ const flipCard = () => {
         card.addEventListener('click', () => {
             if (card.classList.contains('active')) {
                 card.classList.remove('active');
-                /*console.log(`show front card ${i + 1}`);*/
             } else {
                 cards[i].classList.add('active');
-                /*console.log(`show back card ${i + 1}`);*/
             }
         });
-        /*console.log(`add eventlistener flip on card ${i + 1}`);*/
     });
 };
+
 const converterMd = (mdTxt) => {
     try {
         var converter = new showdown.Converter(),
@@ -405,27 +358,8 @@ const converterMd = (mdTxt) => {
 };
 
 const appInit = () => {
-    console.log("bonjour!");
     getList();
     listBtn();
+    inputKey();
 };
 appInit();
-
-// get by name or id, 'cause error CORS, has been replaced by searchCharacter.
-/*const getName = () => {
-    let inputName = document.getElementById('name').value;
-    let url = `https://character-database.becode.xyz/characters`;
-    fetch(url)
-        .then(response => {
-            if (!response.ok) throw new Error(response.statusText);
-            return response.json();
-        })
-        .then(data => {
-            console.log(data);
-            console.log(`data get by name or id: ${inputName}`);
-            searchCharacter(data);
-        })
-        .catch(error => {
-            console.log('Noob !', error);
-        });
-};*/
