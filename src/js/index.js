@@ -145,21 +145,9 @@ const inputKey = (data) => {
     });
 };
 
-/* const addForm = () => {
-    let listSection = document.querySelector('#listCharacter');
-    listSection.innerHTML = `Yay!
-    <br>You're here to add some character!
-    <br>So incredible!
-    <br>Waw!
-    <br>Wouhou!
-    <br>You'll be famous for that!
-    <br>This is a symbolic create button.`;
-}; */
-
-
 const newCharacter = () => {
 
-    console.log('form submited')
+    console.log('form submited');
 
     let url = 'https://character-database.becode.xyz/characters';
     let name = document.getElementById(`formName`).value;
@@ -197,8 +185,8 @@ const newCharacter = () => {
 };
 const viewImgFormat = () => {
 
-    const status = document.getElementById('status');
-    const output = document.getElementById('output');
+    let status = document.getElementById('status');
+    let output = document.getElementById('output');
     if (window.FileList && window.File && window.FileReader) {
         document.getElementById('formAvatar').addEventListener('change', event => {
             output.src = '';
@@ -273,21 +261,72 @@ const profileCharacter = (data, i) => {
     <h1 class="title__profile">${data[i].name}</h1>
     <div class="txt__profile">${converterMd(data[i].description)}</div>
     <input type="text" id="editName" name="name" placeholder="name">
-    <input type="text" id="editShortDescription" name="shortDescription" placeholder="Short description">
-    <input type="text" id="editDescription" name="description" placeholder="Description">
+    <textarea type="text" id="editShortDescription" name="shortDescription" placeholder="Short description"></textarea>
+    <textarea type="text" id="editDescription" name="description" placeholder="Description"></textarea>
     </div>`;
     delBtn(data, i);
     editBtn();
+    sendBtn(data, i);
     console.log(`Voilà la description"${converterMd(data[i].description)}"`);
+};
+
+const sendBtn = (data, i) => {
+    let sendBtns = document.querySelector('.sendBtn');
+    let url = `https://character-database.becode.xyz/characters/${data[i].id}`;
+    viewImgFormat();
+    sendBtns.addEventListener('click', () => {
+        let name = document.getElementById(`editName`).value;
+        let description = document.getElementById('editDescription').value;
+        let shortDescription = document.getElementById('editShortDescription').value;
+        let avatar = document.getElementById('output').src;
+        let dataImg = avatar.replace('data:image/png;base64,', '').replace('data:image/jpeg;base64,', '');
+        if (name == "") {
+            name = data[i].name;
+        };
+        if (shortDescription == "") {
+            shortDescription = data[i].shortDescription
+        };
+        if (description == "") {
+            description = data[i].description
+        };
+        if (avatar == "") {
+            dataImg = data[i].image
+            console.log(dataImg);
+        };
+        var character = {
+            description: description,
+            //id: "",
+            image: dataImg,
+            name: name,
+            shortDescription: shortDescription
+        };
+        axios({
+            method: 'put',
+            url: url,
+            data: character
+        })
+            .then(function (response) {
+                console.log(response);
+                getList();
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    });
 };
 
 const editBtn = () => {
     let editBtns = document.querySelector('.editorBtn');
+    let quitBtns = document.querySelector('.cancelBtn');
     let containerBtn = document.querySelector('.container-btn__profile');
     let containerTxt = document.querySelector('.container-txt__profile');
     let containerImg = document.querySelector('.container-img__profile');
     editBtns.addEventListener('click', () => {
-        profilEditor();
+        flip(containerBtn);
+        flip(containerTxt);
+        flip(containerImg);
+    });
+    quitBtns.addEventListener('click', () => {
         flip(containerBtn);
         flip(containerTxt);
         flip(containerImg);
@@ -297,11 +336,8 @@ const editBtn = () => {
 const profilEditor = () => {
     console.log(`Make Up !!!!!`);
     viewImgFormat();
-    /*let containerImg = document.querySelector('.container-img__profile');
-    containerImg.addEventListener('click', () => {
-        flip(containerImg);
-    });*/
 };
+
 //dynamic URL
 const getImageUrl = (name) => {
     return new URL(`../../src/img/${name}.png`, import.meta.url).href

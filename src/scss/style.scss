@@ -377,14 +377,39 @@ body {
 
                         #editName {
                             display: block;
+                            border-bottom: 10px solid black;
+                            height: 50px;
+                            box-sizing: border-box;
+                            text-align: center;
+                            line-height: 40px;
+                            font-size: 24px;
                         }
 
                         #editShortDescription {
                             display: block;
+                            box-sizing: border-box;
+                            min-height: 75px;
+                            width: 640px;
+                            padding-right: 10px;
+                            padding-left: 20px;
+                            padding-top: 15px;
+                            padding-bottom: 15px;
+                            font-size: 14px;
+                            border-bottom: 10px solid black;
+                            resize: vertical;
                         }
 
                         #editDescription {
                             display: block;
+                            box-sizing: border-box;
+                            min-height: 125px;
+                            width: 640px;
+                            padding-right: 10px;
+                            padding-left: 20px;
+                            padding-top: 15px;
+                            padding-bottom: 15px;
+                            font-size: 14px;
+                            resize: vertical;
                         }
                     }
                 }
