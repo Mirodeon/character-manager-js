@@ -260,9 +260,9 @@ const profileCharacter = (data, i) => {
     <div class="container-txt__profile">
     <h1 class="title__profile">${data[i].name}</h1>
     <div class="txt__profile">${converterMd(data[i].description)}</div>
-    <input type="text" id="editName" name="name" placeholder="name">
-    <textarea type="text" id="editShortDescription" name="shortDescription" placeholder="Short description"></textarea>
-    <textarea type="text" id="editDescription" name="description" placeholder="Description"></textarea>
+    <input type="text" id="editName" name="name" placeholder="${data[i].name}">
+    <textarea type="text" id="editShortDescription" name="shortDescription" placeholder="${data[i].shortDescription}"></textarea>
+    <textarea type="text" id="editDescription" name="description" placeholder="${data[i].description}"></textarea>
     </div>`;
     delBtn(data, i);
     editBtn();
@@ -284,13 +284,13 @@ const sendBtn = (data, i) => {
             name = data[i].name;
         };
         if (shortDescription == "") {
-            shortDescription = data[i].shortDescription
+            shortDescription = data[i].shortDescription;
         };
         if (description == "") {
-            description = data[i].description
+            description = data[i].description;
         };
         if (avatar == "") {
-            dataImg = data[i].image
+            dataImg = data[i].image;
             console.log(dataImg);
         };
         var character = {
