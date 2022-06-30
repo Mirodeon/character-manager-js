@@ -211,15 +211,32 @@ const viewImgFormat = () => {
 
 const addForm = () => {
     let listSection = document.querySelector('#listCharacter');
-
-    listSection.innerHTML = `
-    <input type="file" id="formAvatar" name="avatar" accept="image/png, image/jpeg">
+/*<input type="file" id="formAvatar" name="avatar" accept="image/png, image/jpeg">
     <input type="text" id="formName" name="name" placeholder="name">
-    <input type="text" id="formShortDescription" name="shortDescription" placeholder="Short description">
-    <input type="text" id="formDescription" name="description" placeholder="Description">
+    <textarea type="text" id="formShortDescription" name="shortDescription" placeholder="Short description"></textarea>
+    <textarea type="text" id="formDescription" name="description" placeholder="Description"></textarea>
     <input type="submit" id="submit" value="Submit">
     <p id="status"></p>
-    <div><img id="output"></div>`;
+    <div><img id="output"></div>*/
+    listSection.innerHTML = `<article class="addProfile__article">
+    <div class="container-pictural__addProfile">
+    <div class="container-img__addProfile">
+    <div class="container-inputImg__edit">
+    <input class="inputImg__add" type="file" id="formAvatar" name="avatar" accept="image/png, image/jpeg">
+    <p id="status"></p>
+    <div class="container-img__add"><img class="img__add" id="output"></div>
+    </div>
+    </div>
+    <div class="container-btn__addProfile">
+    <btn class="btn__profile quitBtn">QUIT</btn>
+    <btn class="btn__profile submitBtn">SEND</btn>
+    </div>
+    </div>
+    <div class="container-txt__addProfile">
+    <input type="text" id="formName" name="name" placeholder="name">
+    <textarea type="text" id="formShortDescription" name="shortDescription" placeholder="Short description"></textarea>
+    <textarea type="text" id="formDescription" name="description" placeholder="Description"></textarea>
+    </div></article>`;
 
     ///// test wysiwyg
     //const wysiwyg = document.querySelector(`input`);
@@ -234,7 +251,8 @@ const addForm = () => {
 
     console.log('form created');
 
-    document.getElementById('submit').addEventListener('click', newCharacter);
+    document.querySelector('.submitBtn').addEventListener('click', newCharacter);
+    document.querySelector('.quitBtn').addEventListener('click', getList);
 };
 
 const profileCharacter = (data, i) => {
@@ -263,7 +281,7 @@ const profileCharacter = (data, i) => {
     <input type="text" id="editName" name="name" placeholder="${data[i].name}">
     <textarea type="text" id="editShortDescription" name="shortDescription" placeholder="${data[i].shortDescription}"></textarea>
     <textarea type="text" id="editDescription" name="description" placeholder="${data[i].description}"></textarea>
-    </div>`;
+    </div></article>`;
     delBtn(data, i);
     editBtn();
     sendBtn(data, i);
