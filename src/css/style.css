@@ -290,7 +290,7 @@ body main #listCharacter .profile__article .container-txt__profile {
 }
 body main #listCharacter .profile__article .container-txt__profile .title__profile {
   border-bottom: 10px solid black;
-  height: 100px;
+  min-height: 100px;
   box-sizing: border-box;
   text-align: center;
   line-height: 90px;

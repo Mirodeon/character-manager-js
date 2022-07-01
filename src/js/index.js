@@ -21,12 +21,14 @@ const characterList = (data) => {
     listSection.innerHTML = data
         .map((character, idx) => {
             if (idx < data.length) {
+                let safeName = character.name.replace('script', 'Je suis un caca qui a écrit du script ici <3');
+                let safeShortDescription = character.shortDescription.replace('script', 'Je suis un caca qui a écrit du script ici <3');
                 return `<article class="listCard">
                 <div class="container-img__listCard">
                 <img class="img__listCard" src="data:image/png;base64,${character.image}">
                 </div>
-                <h1 class="title__listCard">${character.name}</h1>
-                <p class="txt__listCard">${character.shortDescription}</p>
+                <h1 class="title__listCard">${safeName}</h1>
+                <p class="txt__listCard">${safeShortDescription}</p>
                 <div class="container-btn__listCard">
                 <btn class="btn__listCard addController">ADD</btn>
                 <btn class="btn__listCard profile-btn">PROFILE</btn>
@@ -49,6 +51,8 @@ const characterList = (data) => {
 const searchByName = () => {
     document.getElementById('name').addEventListener('keyup', event => {
         if (event.key === 'Enter') {
+            let popup = document.getElementById('popup');
+            popup.innerHTML = ``;
             let inputName = document.getElementById('name').value;
             let url = `https://character-database.becode.xyz/characters?name=${inputName}`;
             axios({
@@ -69,6 +73,8 @@ const searchByName = () => {
 const searchById = () => {
     document.getElementById('id').addEventListener('keyup', event => {
         if (event.key === 'Enter') {
+            let popup = document.getElementById('popup');
+            popup.innerHTML = ``;
             let inputId = document.getElementById('id').value;
             let url = `https://character-database.becode.xyz/characters/${inputId}`;
             axios({
@@ -78,8 +84,8 @@ const searchById = () => {
                 .then(response => {
                     console.log(response.data);
                     var character = {
-                            0: response.data
-                        };
+                        0: response.data
+                    };
                     console.log(character);
                     profileCharacter(character, 0);
                 })
@@ -120,11 +126,12 @@ const profileBtn = (data) => {
 const delBtn = (data, i) => {
     let delBtns = document.querySelector('.delBtn');
     delBtns.addEventListener('click', () => {
-        delPopup(data, i);
+        delPopup();
+        yesDel(data, i);
     });
 };
 
-const delPopup = (data, i) => {
+const delPopup = () => {
     let popup = document.getElementById('popup');
     popup.innerHTML = `<article class="popupDel">
     <p class="txt__popupDel">Are you sure?</p>
@@ -137,6 +144,10 @@ const delPopup = (data, i) => {
     noBtns.addEventListener('click', () => {
         popup.innerHTML = ``;
     });
+
+};
+
+const yesDel = (data, i) => {
     let yesBtns = document.querySelector('.yesBtn');
     yesBtns.addEventListener('click', () => {
         axios({
@@ -231,11 +242,28 @@ const addForm = () => {
     <textarea type="text" id="formDescription" name="description" placeholder="Description"></textarea>
     </div></article>`;
     viewImgFormat();
-    document.querySelector('.submitBtn').addEventListener('click', newCharacter);
+    submitBtn();
     document.querySelector('.quitBtn').addEventListener('click', getList);
 };
 
+const submitBtn = () => {
+    let submitBtns = document.querySelector('.submitBtn');
+    submitBtns.addEventListener('click', () => {
+        delPopup();
+        yesAdd();
+    });
+};
+
+const yesAdd = () => {
+    let yesBtns = document.querySelector('.yesBtn');
+    yesBtns.addEventListener('click', () => {
+        newCharacter();
+    });
+};
+
 const profileCharacter = (data, i) => {
+    let safeName = data[i].name.replace('script', 'Je suis un caca qui a écrit du script ici <3');
+    let safeDescription = data[i].description.replace('script', 'Je suis un caca qui a écrit du script ici <3');
     let listSection = document.querySelector('#listCharacter');
     listSection.innerHTML = `<article class="profile__article">
     <div class="container-pictural__profile">
@@ -255,8 +283,8 @@ const profileCharacter = (data, i) => {
     </div>
     </div>
     <div class="container-txt__profile">
-    <h1 class="title__profile">${data[i].name}</h1>
-    <div class="txt__profile">${converterMd(data[i].description)}</div>
+    <h1 class="title__profile">${safeName}</h1>
+    <div class="txt__profile">${converterMd(safeDescription)}</div>
     <input type="text" id="editName" name="name" placeholder="${data[i].name}">
     <textarea type="text" id="editShortDescription" name="shortDescription" placeholder="${data[i].shortDescription}"></textarea>
     <textarea type="text" id="editDescription" name="description" placeholder="${data[i].description}"></textarea>
@@ -268,9 +296,18 @@ const profileCharacter = (data, i) => {
 
 const sendBtn = (data, i) => {
     let sendBtns = document.querySelector('.sendBtn');
-    let url = `https://character-database.becode.xyz/characters/${data[i].id}`;
     viewImgFormat();
     sendBtns.addEventListener('click', () => {
+        delPopup();
+        yesEdit(data, i);
+
+    });
+};
+
+const yesEdit = (data, i) => {
+    let yesBtns = document.querySelector('.yesBtn');
+    yesBtns.addEventListener('click', () => {
+        let url = `https://character-database.becode.xyz/characters/${data[i].id}`;
         let name = document.getElementById(`editName`).value;
         let description = document.getElementById('editDescription').value;
         let shortDescription = document.getElementById('editShortDescription').value;
@@ -308,7 +345,6 @@ const sendBtn = (data, i) => {
             });
     });
 };
-
 const editBtn = () => {
     let editBtns = document.querySelector('.editorBtn');
     let quitBtns = document.querySelector('.cancelBtn');
