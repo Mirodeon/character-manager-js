@@ -21,20 +21,34 @@ const characterList = (data) => {
     listSection.innerHTML = data
         .map((character, idx) => {
             if (idx < data.length) {
-                let safeName = character.name.replace('script', 'Je suis un caca qui a écrit du script ici <3');
-                let safeShortDescription = character.shortDescription.replace('script', 'Je suis un caca qui a écrit du script ici <3');
-                return `<article class="listCard">
-                <div class="container-img__listCard">
-                <img class="img__listCard" src="data:image/png;base64,${character.image}">
-                </div>
-                <h1 class="title__listCard">${safeName}</h1>
-                <p class="txt__listCard">${safeShortDescription}</p>
-                <div class="container-btn__listCard">
-                <btn class="btn__listCard addController">ADD</btn>
-                <btn class="btn__listCard profile-btn">PROFILE</btn>
-                </div>
-                </article>`;
-            }
+                try {
+                    let safeName = character.name.replace('script', 'Je suis un caca qui a écrit du script ici <3');
+                    let safeShortDescription = character.shortDescription.replace('script', 'Je suis un caca qui a écrit du script ici <3');
+                    return `<article class="listCard">
+                    <div class="container-img__listCard">
+                    <img class="img__listCard" src="data:image/png;base64,${character.image}">
+                    </div>
+                    <h1 class="title__listCard">${safeName}</h1>
+                    <p class="txt__listCard">${safeShortDescription}</p>
+                    <div class="container-btn__listCard">
+                    <btn class="btn__listCard addController">ADD</btn>
+                    <btn class="btn__listCard profile-btn">PROFILE</btn>
+                    </div>
+                    </article>`;
+                } catch {
+                    axios({
+                        method: 'delete',
+                        url: `https://character-database.becode.xyz/characters/${character.id}`,
+                    })
+                        .then(response => {
+                            console.log(response);
+                        })
+                        .catch(error => {
+                            console.log('Noob!', error);
+                        });
+                    return;
+                }
+            };
         })
         .join(' ');
     flipCard();
@@ -345,6 +359,7 @@ const yesEdit = (data, i) => {
             });
     });
 };
+
 const editBtn = () => {
     let editBtns = document.querySelector('.editorBtn');
     let quitBtns = document.querySelector('.cancelBtn');
