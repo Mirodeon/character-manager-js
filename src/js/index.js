@@ -22,8 +22,8 @@ const characterList = (data) => {
         .map((character, idx) => {
             if (idx < data.length) {
                 try {
-                    let safeName = character.name.replace('script', 'Je suis un caca qui a écrit du script ici <3');
-                    let safeShortDescription = character.shortDescription.replace('script', 'Je suis un caca qui a écrit du script ici <3');
+                    let safeName = character.name.replace('script>', 'Je suis un caca qui a écrit du script ici <3');
+                    let safeShortDescription = character.shortDescription.replace('script>', 'Je suis un caca qui a écrit du script ici <3');
                     return `<article class="listCard">
                     <div class="container-img__listCard">
                     <img class="img__listCard" src="data:image/png;base64,${character.image}">
@@ -276,8 +276,8 @@ const yesAdd = () => {
 };
 
 const profileCharacter = (data, i) => {
-    let safeName = data[i].name.replace('script', 'Je suis un caca qui a écrit du script ici <3');
-    let safeDescription = data[i].description.replace('script', 'Je suis un caca qui a écrit du script ici <3');
+    let safeName = data[i].name.replace('script>', 'Je suis un caca qui a écrit du script ici <3');
+    let safeDescription = data[i].description.replace('script>', 'Je suis un caca qui a écrit du script ici <3');
     let listSection = document.querySelector('#listCharacter');
     listSection.innerHTML = `<article class="profile__article">
     <div class="container-pictural__profile">

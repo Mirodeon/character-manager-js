@@ -27,6 +27,13 @@ body header .bg__header .nav__header .container__displayController {
   display: flex;
   gap: 10px;
 }
+@media screen and (max-width: 850px) {
+  body header .bg__header .nav__header .container__displayController {
+    display: flex;
+    flex-direction: column;
+    margin-left: 25px;
+  }
+}
 body header .bg__header .nav__header .container__displayController .nav__btn {
   box-sizing: border-box;
   border: 1px solid white;
@@ -48,6 +55,15 @@ body header .bg__header .nav__header .container__inputName {
   max-height: 38px;
   filter: drop-shadow(-1px 1px 5px white) drop-shadow(-1px -1px 5px white);
 }
+@media screen and (max-width: 850px) {
+  body header .bg__header .nav__header .container__inputName {
+    max-width: 100px;
+    min-width: 100px;
+    justify-content: space-around;
+    min-height: 86px;
+    margin-right: 25px;
+  }
+}
 body header .title__header {
   font-size: 48px;
   background: white;
@@ -58,6 +74,11 @@ body header .title__header {
   padding: 15px 0px;
   border: 1px solid black;
   filter: drop-shadow(-1px 1px 5px black) drop-shadow(-1px -1px 5px black);
+}
+@media screen and (max-width: 850px) {
+  body header .title__header {
+    margin-top: -10px;
+  }
 }
 body main {
   margin-bottom: 50px;
@@ -190,9 +211,20 @@ body main #listCharacter .profile__article {
   -webkit-animation: 3s ease-out 0s opacit;
           animation: 3s ease-out 0s opacit;
 }
+@media screen and (max-width: 850px) {
+  body main #listCharacter .profile__article {
+    flex-direction: column;
+    width: 320px;
+    align-items: center;
+  }
+}
 body main #listCharacter .profile__article .container-pictural__profile {
   height: 100%;
+  width: 100%;
   background: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 body main #listCharacter .profile__article .container-pictural__profile .container-img__profile {
   width: 150px;
@@ -288,6 +320,12 @@ body main #listCharacter .profile__article .container-txt__profile {
   flex-direction: column;
   justify-content: center;
 }
+@media screen and (max-width: 850px) {
+  body main #listCharacter .profile__article .container-txt__profile {
+    width: 320px;
+    border: none;
+  }
+}
 body main #listCharacter .profile__article .container-txt__profile .title__profile {
   border-bottom: 10px solid black;
   min-height: 100px;
@@ -295,6 +333,11 @@ body main #listCharacter .profile__article .container-txt__profile .title__profi
   text-align: center;
   line-height: 90px;
   font-size: 48px;
+}
+@media screen and (max-width: 850px) {
+  body main #listCharacter .profile__article .container-txt__profile .title__profile {
+    width: 320px;
+  }
 }
 body main #listCharacter .profile__article .container-txt__profile .txt__profile {
   box-sizing: border-box;
@@ -306,6 +349,11 @@ body main #listCharacter .profile__article .container-txt__profile .txt__profile
   padding-top: 15px;
   padding-bottom: 15px;
   font-size: 16px;
+}
+@media screen and (max-width: 850px) {
+  body main #listCharacter .profile__article .container-txt__profile .txt__profile {
+    width: 320px;
+  }
 }
 body main #listCharacter .profile__article .container-txt__profile #editName {
   display: none;
@@ -344,6 +392,11 @@ body main #listCharacter .profile__article .container-txt__profile.active #editS
   border-bottom: 10px solid black;
   resize: vertical;
 }
+@media screen and (max-width: 850px) {
+  body main #listCharacter .profile__article .container-txt__profile.active #editShortDescription {
+    width: 320px;
+  }
+}
 body main #listCharacter .profile__article .container-txt__profile.active #editDescription {
   display: block;
   box-sizing: border-box;
@@ -356,6 +409,11 @@ body main #listCharacter .profile__article .container-txt__profile.active #editD
   font-size: 14px;
   resize: vertical;
 }
+@media screen and (max-width: 850px) {
+  body main #listCharacter .profile__article .container-txt__profile.active #editDescription {
+    width: 320px;
+  }
+}
 body main #listCharacter .addProfile__article {
   width: 800px;
   display: flex;
@@ -365,9 +423,20 @@ body main #listCharacter .addProfile__article {
   -webkit-animation: 3s ease-out 0s opacit;
           animation: 3s ease-out 0s opacit;
 }
+@media screen and (max-width: 850px) {
+  body main #listCharacter .addProfile__article {
+    flex-direction: column;
+    width: 320px;
+    align-items: center;
+  }
+}
 body main #listCharacter .addProfile__article .container-pictural__addProfile {
   height: 100%;
   background: black;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 body main #listCharacter .addProfile__article .container-pictural__addProfile .container-img__addProfile {
   width: 150px;
@@ -428,6 +497,12 @@ body main #listCharacter .addProfile__article .container-txt__addProfile {
   flex-direction: column;
   justify-content: center;
 }
+@media screen and (max-width: 850px) {
+  body main #listCharacter .addProfile__article .container-txt__addProfile {
+    width: 320px;
+    border: none;
+  }
+}
 body main #listCharacter .addProfile__article .container-txt__addProfile #formName {
   display: block;
   border-bottom: 10px solid black;
@@ -450,6 +525,11 @@ body main #listCharacter .addProfile__article .container-txt__addProfile #formSh
   border-bottom: 10px solid black;
   resize: vertical;
 }
+@media screen and (max-width: 850px) {
+  body main #listCharacter .addProfile__article .container-txt__addProfile #formShortDescription {
+    width: 320px;
+  }
+}
 body main #listCharacter .addProfile__article .container-txt__addProfile #formDescription {
   display: block;
   box-sizing: border-box;
@@ -461,6 +541,11 @@ body main #listCharacter .addProfile__article .container-txt__addProfile #formDe
   padding-bottom: 15px;
   font-size: 14px;
   resize: vertical;
+}
+@media screen and (max-width: 850px) {
+  body main #listCharacter .addProfile__article .container-txt__addProfile #formDescription {
+    width: 320px;
+  }
 }
 body main #popup .popupDel {
   position: absolute;
@@ -477,6 +562,11 @@ body main #popup .popupDel {
   -webkit-animation: 0.75s ease-out 0s opacit;
           animation: 0.75s ease-out 0s opacit;
   background: rgba(0, 0, 0, 0.375);
+}
+@media screen and (max-width: 850px) {
+  body main #popup .popupDel {
+    top: 115px;
+  }
 }
 body main #popup .popupDel .txt__popupDel {
   display: flex;

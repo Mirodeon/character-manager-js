@@ -2,6 +2,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow&family=Road+Rage&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Trispace&display=swap');
 
+@mixin mobile {
+    @media screen and (max-width: 850px) {
+        @content
+    }
+
+    ;
+}
+
 * {
     font-family: 'Trispace', sans-serif;
 }
@@ -29,6 +37,12 @@ body {
                     display: flex;
                     gap: 10px;
 
+                    @include mobile {
+                        display: flex;
+                        flex-direction: column;
+                        margin-left: 25px;
+                    }
+
                     .nav__btn {
                         box-sizing: border-box;
                         border: 1px solid white;
@@ -51,6 +65,14 @@ body {
                     min-width: 210px;
                     max-height: 38px;
                     filter: drop-shadow(-1px 1px 5px white) drop-shadow(-1px -1px 5px white);
+
+                    @include mobile {
+                        max-width: 100px;
+                        min-width: 100px;
+                        justify-content: space-around;
+                        min-height: 86px;
+                        margin-right: 25px;
+                    }
                 }
             }
         }
@@ -65,6 +87,10 @@ body {
             padding: 15px 0px;
             border: 1px solid black;
             filter: drop-shadow(-1px 1px 5px black) drop-shadow(-1px -1px 5px black);
+
+            @include mobile {
+                margin-top: -10px;
+            }
         }
     }
 
@@ -215,9 +241,19 @@ body {
                 border-radius: 20px;
                 animation: 3s ease-out 0s opacit;
 
+                @include mobile {
+                    flex-direction: column;
+                    width: 320px;
+                    align-items: center;
+                }
+
                 .container-pictural__profile {
                     height: 100%;
+                    width: 100%;
                     background: black;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
 
                     .container-img__profile {
                         width: 150px;
@@ -338,6 +374,11 @@ body {
                     flex-direction: column;
                     justify-content: center;
 
+                    @include mobile {
+                        width: 320px;
+                        border: none;
+                    }
+
                     .title__profile {
                         border-bottom: 10px solid black;
                         min-height: 100px;
@@ -345,6 +386,10 @@ body {
                         text-align: center;
                         line-height: 90px;
                         font-size: 48px;
+
+                        @include mobile {
+                            width: 320px;
+                        }
                     }
 
                     .txt__profile {
@@ -357,6 +402,10 @@ body {
                         padding-top: 15px;
                         padding-bottom: 15px;
                         font-size: 16px;
+
+                        @include mobile {
+                            width: 320px;
+                        }
                     }
 
                     #editName {
@@ -402,6 +451,10 @@ body {
                             font-size: 14px;
                             border-bottom: 10px solid black;
                             resize: vertical;
+
+                            @include mobile {
+                                width: 320px;
+                            }
                         }
 
                         #editDescription {
@@ -415,6 +468,10 @@ body {
                             padding-bottom: 15px;
                             font-size: 14px;
                             resize: vertical;
+
+                            @include mobile {
+                                width: 320px;
+                            }
                         }
                     }
                 }
@@ -428,9 +485,19 @@ body {
                 border-radius: 20px;
                 animation: 3s ease-out 0s opacit;
 
+                @include mobile {
+                    flex-direction: column;
+                    width: 320px;
+                    align-items: center;
+                }
+
                 .container-pictural__addProfile {
                     height: 100%;
                     background: black;
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
 
                     .container-img__addProfile {
                         width: 150px;
@@ -502,6 +569,11 @@ body {
                     flex-direction: column;
                     justify-content: center;
 
+                    @include mobile {
+                        width: 320px;
+                        border: none;
+                    }
+
                     #formName {
                         display: block;
                         border-bottom: 10px solid black;
@@ -524,6 +596,10 @@ body {
                         font-size: 14px;
                         border-bottom: 10px solid black;
                         resize: vertical;
+
+                        @include mobile {
+                            width: 320px;
+                        }
                     }
 
                     #formDescription {
@@ -537,6 +613,10 @@ body {
                         padding-bottom: 15px;
                         font-size: 14px;
                         resize: vertical;
+
+                        @include mobile {
+                            width: 320px;
+                        }
                     }
                 }
             }
@@ -557,6 +637,9 @@ body {
                 filter: drop-shadow(-1px 1px 5px black) drop-shadow(-1px -1px 5px black);
                 animation: 0.75s ease-out 0s opacit;
                 background: rgba(0, 0, 0, 0.375);
+                @include mobile {
+                    top: 115px;
+                }
 
                 .txt__popupDel {
                     display: flex;
