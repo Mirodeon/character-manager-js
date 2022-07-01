@@ -350,11 +350,11 @@ const yesEdit = (data, i) => {
             url: url,
             data: character
         })
-            .then(function (response) {
+            .then(response => {
                 console.log(response);
                 getList();
             })
-            .catch(function (error) {
+            .catch(error => {
                 console.log(error);
             });
     });
