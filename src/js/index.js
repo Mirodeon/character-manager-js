@@ -46,7 +46,7 @@ const characterList = (data) => {
     profileBtn(data);
 };
 
-const inputKey = () => {
+const searchByName = () => {
     document.getElementById('name').addEventListener('keyup', event => {
         if (event.key === 'Enter') {
             let inputName = document.getElementById('name').value;
@@ -64,6 +64,9 @@ const inputKey = () => {
                 });
         };
     });
+};
+
+const searchById = () => {
     document.getElementById('id').addEventListener('keyup', event => {
         if (event.key === 'Enter') {
             let inputId = document.getElementById('id').value;
@@ -74,13 +77,22 @@ const inputKey = () => {
             })
                 .then(response => {
                     console.log(response.data);
-                    characterList(response.data);
+                    var character = {
+                            0: response.data
+                        };
+                    console.log(character);
+                    profileCharacter(character, 0);
                 })
                 .catch(error => {
                     console.log('Noob!', error);
                 });
         };
     });
+};
+
+const inputKey = () => {
+    searchByName();
+    searchById();
 };
 
 const listBtn = () => {
