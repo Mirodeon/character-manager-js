@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Character Manager</title>
+    
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.681cabc7.ico">
+    <script src="https://cdn.jsdelivr.net/npm/showdown@2.1.0/dist/showdown.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!--test wysiwyg-->
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+
+    
+  <script type="module" crossorigin src="/assets/index.4203a36a.js"></script>
+  <link rel="stylesheet" href="/assets/index.52272335.css">
+</head>
+
+<body>
+    <header>
+        <div class="bg__header">
+            <nav class="nav__header">
+                <div class="container__displayController">
+                    <article class="addController nav__btn">ADD</article>
+                    <article class="resetController nav__btn">LIST</article>
+                </div>
+                <div class="container__inputName">
+                    <input type="text" id="name" name="name" placeholder="name">
+                    <input type="text" id="id" name="id" placeholder="id">
+                </div>
+            </nav>
+        </div>
+        <h1 class="title__header">Character Manager</h1>
+    </header>
+    <main>
+        <section id="listCharacter"></section>
+        <section id="popup"></section>
+    </main>
+</body>
+
+</html>
